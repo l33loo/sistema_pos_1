@@ -5,8 +5,8 @@
 
 session_start();
 
-$nome = $_POST ["Nome do Artigo"];
-$preço = $_POST["Preço Unitário"];
+$nome = $_POST ["nome"];
+$preço = $_POST["preco"];
 $erro = 0;
 
 //Verifica se existem erros nos campos
@@ -17,7 +17,7 @@ if(empty($nome) or strstr ($nome, ' ' ) == FALSE)
 
 //verifica se existem erros no $preço
 
-if (empty($preço) or (is_float($preço) or strstr ($preço, ' ' ) == FALSE))
+if (empty($preço) or (!is_float($preço) or strstr ($preço, ' ' ) == FALSE))
     echo "Insira um valor válido"; $erro = 1;
 
 //Verifica se existem erros no codigo de barras
@@ -31,19 +31,19 @@ if($erro == 0)
     echo "Todos os campos foram preenchidos corretamente!";
 
 //Abrir ficheiro
-$nomeFicheiro = "artigos.csv";
+$nomeFicheiro = "artigos.txt";
 if (file_exists($nomeFicheiro)) {
     $ficheiro = fopen($nomeFicheiro, "r");
 } else {
     return [];
-}
+};
+
 
 
 
 ?>
 
 
-uiuiu
 
 </body>
 </html>
