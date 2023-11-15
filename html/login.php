@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col">
                 <h1>Login</h1>
-                <?php if (!empty($mensagemErro) ) { ?>
+                <?php if (!empty($mensagemErro)) { ?>
                   <div class="alert alert-danger" role="alert">
                     <?php echo $mensagemErro ?>
                   </div>
