@@ -1,4 +1,4 @@
-<?php include('../app/index.inc'); ?>
+<?php include('app/index.inc'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
