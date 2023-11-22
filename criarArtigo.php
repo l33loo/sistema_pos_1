@@ -12,12 +12,13 @@
 <body>
 
 <?php
+require_once('criarArtigo.php');
 
-//cria um artigo
+//adicionar um artigo
 function adicionarArtigo(array $artigos, string $nome, int $preco, int $iva, string $barras, int $id = 0): array 
 { 
 $artigo = [
-    'codigo' => $id == 0 ? count($artigos) + 1 :$id,
+    'codigo' => $id === 0 ? count($artigos) + 1 :$id,
     'nome' => $nome,
     'preco' => $preco,
     'iva' => $iva,
@@ -29,8 +30,8 @@ $artigo = [
  }
 
 
-if(guardar($artigo)) { ?>
-    <p class = "alert alert-sucess">Artigo adicionado com Sucesso</p>
+if(guardarArtigo($artigo)) { ?>
+    <p class = "alert alert-success">Artigo adicionado com Sucesso</p>
 <?php } else { ?>
     <p class = "alert alert-danger"> Erro ao adicionar Artigo</p>
 <?php  };
@@ -43,6 +44,8 @@ function guardarArtigo(array $artigo): bool
     
     $linha = implode(";", $artigo);
 
+    $bytes = implode(";", $linha);
+
 //fechar o ficheiro
     fclose($ficheiro);
 
@@ -53,7 +56,6 @@ function guardarArtigo(array $artigo): bool
 
     function lerArtigos(): array
     {
-//abrir o ficheiro
     $nomeFicheiro = "artigos.txt";
     if(file_exists($nomeFicheiro)) {
         $ficheiro = fopen($nomeFicheiro, "r");
@@ -69,15 +71,14 @@ function guardarArtigo(array $artigo): bool
     $artigo = explode(";", $linha);
 
     return [
-        'codigo de artigo' => [],
-        'nome do artigo' => $artigo[0],
-        'preço unitário' => $artigo[1],
-        'taxa de IVA' => $artigo[2],
-        'codigo de barras' => $artigo[3],
+        'codigo' => [],
+        'nome' => $nome[0],
+        'preco' => $preco[1],
+        'iva' => $iva[2],
+        'barras' => $barras[3],
     ];
  }
     
-
 ?>
     
 </body>

@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div> class="container mt 5> 
+    <div class = "container m"> 
         <div class="row">
             <h1>Lista de Clientes</h1>
     </div>
@@ -17,9 +17,30 @@
 
 <?php
 
-require_once 'registo.php'
-    
+require_once 'criarArtigo.php';
+$artigos = lerArtigos();?> 
 
-?>    
+<table class="table">
+    <thead>
+        <tr>
+            <th>Codigo de Artigo</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>IVA</th>
+            <th>Codigo de Barras</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($artigos as $artigo) { ?> 
+        <tr>
+            <td><?php echo $artigo['codigo'];?>
+            <td><?php echo $artigo['nome'];?></td>
+            <td><?php echo $artigo['preco'];?></td>
+            <td><?php echo $artigo['iva'];?></td>
+            <td><?php echo number_format($artigo['barras'], 0, '', ' ');?></td>
+        </tr>
+        <?php } ?> 
+    </tbody> 
+</table>  
 </body>
 </html>
