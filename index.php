@@ -1,4 +1,7 @@
-<?php include('app/index.inc'); ?>
+<?php
+include('app/index.inc');
+include('app/venda.inc');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,19 +19,24 @@
         <h1>Vendas</h1>
         <div class="row">
             <div class="col-12 col-lg-5">
-                <form>
+                <form method="post" action="">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="codigo">Código de Barras</label>
-                                <input type="text" class="form-control" id="codigo" aria-describedby="emailHelp" placeholder="Enter email">
+                                <label for="barras">Código de Barras</label>
+                                <input type="number" class="form-control" id="ean13" name="barras" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <label for="quantidade">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade" name="quantidade" required>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="submit" value="Adicionar">
                         </div>
                     </div>
                 </form>
@@ -46,24 +54,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach (lerVendas() as $codigo=>$venda) { ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row"><?php echo $codigo; ?></th>
+                            <td><?php echo $venda[0]; ?></td>
+                            <td><?php echo $venda[1]; ?></td>
+                            <td><?php echo $venda[2]; ?></td>
+                            <td><?php echo $venda[3]; ?></td>
+                            <td><?php echo $venda[4]; ?></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
