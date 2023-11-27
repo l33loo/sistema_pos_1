@@ -11,14 +11,14 @@
 <body>
     <div class = "container m"> 
         <div class="row">
-            <h1>Lista de Clientes</h1>
+            <h1>Lista de Artigos</h1>
     </div>
 </div>
 
 <?php
 
-require_once 'criarArtigo.php';
-$artigos = lerArtigos();?> 
+require_once 'pos_lib.php';
+$artigos = lerArtigo();?> 
 
 <table class="table">
     <thead>
@@ -40,6 +40,7 @@ $artigos = lerArtigos();?>
             <td><?php echo number_format($artigo['barras'], 0, '', ' ');?></td>
         </tr>
         <?php } ?> 
+        
     </tbody> 
 </table>  
 </body>
