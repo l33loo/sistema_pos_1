@@ -57,11 +57,11 @@ include('app/venda.inc');
                         <?php foreach (lerVendas() as $codigo=>$venda) { ?>
                         <tr>
                             <th scope="row"><?php echo $codigo; ?></th>
-                            <td><?php echo $venda[0]; ?></td>
-                            <td><?php echo $venda[1]; ?></td>
-                            <td><?php echo $venda[2]; ?></td>
-                            <td><?php echo $venda[3]; ?></td>
-                            <td><?php echo $venda[4]; ?></td>
+                            <td><?php echo $venda["nome"]; ?></td>
+                            <td><?php echo $venda["quantidade"]; ?></td>
+                            <td><?php echo $venda["iva"]; ?></td>
+                            <td><?php echo $venda["precoUni"]; ?></td>
+                            <td><?php echo $venda["quantidade"]*$venda["iva"]*$venda["precoUni"]; ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>

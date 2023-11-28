@@ -16,7 +16,7 @@ function lerVendas(): array {
             "nome" => $venda[1],
             "quantidade" => $venda[2],
             "precoUni" => $venda[3],
-            "imposto" => $venda[4],
+            "iva" => $venda[4],
             "cliente" => $venda[5],
             "desconto" => $venda[6],
         );
