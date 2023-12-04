@@ -13,4 +13,4 @@ $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $_POST['iv
 
 guardarArtigos($artigos);
 
-    header('Location: index.html');
+header('Location: index.html');
