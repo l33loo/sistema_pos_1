@@ -13,9 +13,10 @@ $erro = 0;
 
 //Verifica se existem erros nos campos
 //verifica se existe erros no $nome
-
-if(empty($nome))
-    echo "Insira um nome válido"; $erro = 1;
+if (empty($nome)) {
+    echo "Insira um nome válido";
+    $erro = 1;
+}
 
 //verifica se existem erros no $preço
 
