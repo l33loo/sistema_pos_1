@@ -19,9 +19,10 @@ if (empty($nome)) {
 }
 
 //verifica se existem erros no $preço
-
-if (empty($preço) || !is_float($preço))
-    echo "Insira um valor válido"; $erro = 1;
+if (empty($preço) || !is_float($preço)) {
+    echo "Insira um valor válido";
+    $erro = 1;
+}
 
 // Verifica se existem erros no codigo de barras
 if (empty($codigoBarras) || strlen($codigoBarras != 13) or strstr ($codigoBarras, ' ' ) == FALSE) {
