@@ -34,10 +34,8 @@ function guardarArtigos(array $artigos): bool
     return true;
 }
 
-//ler artigos
-
-    function lerArtigo(): array
-    {
+function lerArtigos(): array
+{
 
     $nomeFicheiro = "artigos.txt";
     if(file_exists($nomeFicheiro)) {
