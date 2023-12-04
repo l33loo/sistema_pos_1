@@ -29,7 +29,7 @@ function guardarArtigos(array $artigos): bool
         }
     }
 
-//fechar o ficheiro
+    //fechar o ficheiro
     fclose($ficheiro);
     return true;
 }
