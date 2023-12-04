@@ -29,12 +29,10 @@ if (empty($codigoBarras) || strlen($codigoBarras != 13) or strstr ($codigoBarras
     $erro = 1;
 }
 
-//Verifica se existem erros 
-
-if($erro == 0)
+// Verifica se existem erros 
+if ($erro == 0) {
     echo "Todos os campos foram preenchidos corretamente!";
-
-
+}
 ?>
 
 
