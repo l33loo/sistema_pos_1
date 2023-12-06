@@ -12,6 +12,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/app/logout.php">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <a href="artigos.html" class="btn btn-primary">Criar Artigo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="lista_artigos.php" class="btn btn-success">Lista de Artigos</a>
+                </li>
             </ul>
         </div>
     </div>
