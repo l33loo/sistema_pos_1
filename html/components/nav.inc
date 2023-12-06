@@ -7,16 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.php">Vendas</a>
+                    <a class="nav-link" href="/html/artigos.html">Criar Artigo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/html/lista_artigos.php">Lista de Artigos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/app/logout.php">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a href="artigos.html" class="btn btn-primary">Criar Artigo</a>
-                </li>
-                <li class="nav-item">
-                    <a href="lista_artigos.php" class="btn btn-success">Lista de Artigos</a>
                 </li>
             </ul>
         </div>

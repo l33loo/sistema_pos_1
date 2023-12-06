@@ -18,7 +18,7 @@ function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, 
  //guarda um artigo
 function guardarArtigos(array $artigos): bool
 {
-    $ficheiro = fopen("artigos.txt", "w") or die('Impossível abrir o ficheiro');
+    $ficheiro = fopen("/dados/artigos.txt", "w") or die('Impossível abrir o ficheiro');
 
     //escreve cada artigo da lista numa linha separando os 
     //itens desta mesma lista por ";"
@@ -37,7 +37,7 @@ function guardarArtigos(array $artigos): bool
 function lerArtigos(): array
 {
 
-    $nomeFicheiro = "artigos.txt";
+    $nomeFicheiro = "/dados/artigos.txt";
     if(file_exists($nomeFicheiro)) {
         $ficheiroArtigos = fopen($nomeFicheiro, "r");
     } else {
