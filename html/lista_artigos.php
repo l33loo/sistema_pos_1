@@ -17,8 +17,8 @@
 
 <?php
 
-require_once '/app/pos_lib.php';
-$artigos = lerArtigo();?> 
+require_once ('../app/pos_lib.php');
+$artigos = lerArtigos();?> 
 
 <table class="table">
     <thead>
