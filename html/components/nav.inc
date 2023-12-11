@@ -12,10 +12,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../html/lista_artigos.php">Lista de Artigos</a>
                 </li>
+                <div class= "">
                 <li class="nav-item">
                     <a class="nav-link" href="../app/logout.php">Logout</a>
                 </li>
             </ul>
+            </div>
         </div>
     </div>
 </nav>

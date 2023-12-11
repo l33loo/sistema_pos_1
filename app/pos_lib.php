@@ -48,7 +48,7 @@ function lerArtigos(): array
     while(($linha = fgets($ficheiroArtigos)) !== false) {
         $artigo = explode(";", trim($linha));
 
-        $artigos = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);    
+        $artigos[$artigo[0]] = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);    
     }
 
     return $artigos;
