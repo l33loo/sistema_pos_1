@@ -1,17 +1,16 @@
 <?php
 
 //adicionar um artigo
-function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras,int $id = 0): array 
-{ 
+function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras, int $id = 0): array
+{
     $artigo = [
         'codigo' => $id === 0 ? count($artigos) + 1 :$id,
         'nome' => $nome,
         'preco' => $preco,
         'iva' => $iva,
-        'barras' => $barras,
     ];
 
-    $artigos[] = $artigo;
+    $artigos[$barras] = $artigo;
     return $artigos;
  }
 
@@ -37,7 +36,7 @@ function guardarArtigos(array $artigos): bool
 function lerArtigos(): array
 {
 
-    $nomeFicheiro = "/dados/artigos.txt";
+    $nomeFicheiro = "../dados/artigos.txt";
     if(file_exists($nomeFicheiro)) {
         $ficheiroArtigos = fopen($nomeFicheiro, "r");
     } else {
@@ -48,7 +47,7 @@ function lerArtigos(): array
     while(($linha = fgets($ficheiroArtigos)) !== false) {
         $artigo = explode(";", trim($linha));
 
-        $artigos[$artigo[0]] = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);    
+        $artigos[$artigo[4]] = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);
     }
 
     return $artigos;
