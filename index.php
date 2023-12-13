@@ -1,6 +1,6 @@
 <?php
-include('app/index.inc');
-include('app/venda.inc');
+include('./app/index.inc');
+include('./app/venda.inc');
 ?>
 
 <!DOCTYPE html>
