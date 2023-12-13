@@ -3,7 +3,7 @@
 function lerVendas(): array {
     $listaVendas = [];
 
-    $caminhoFicheiro = "dados/venda.txt";
+    $caminhoFicheiro = "dados/vendas.txt";
     if (file_exists($caminhoFicheiro)) {
         $ficheiroVendas = fopen($caminhoFicheiro, "r");
     } else {
