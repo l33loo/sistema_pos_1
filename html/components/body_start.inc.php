@@ -13,12 +13,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href=<?php echo ROOT . '/html/lista_artigos.php'?>>Lista de Artigos</a>
                 </li>
-                <div class= "">
                 <li class="nav-item">
-                    <a class="nav-link" href=<?php echo ROOT . '/app/logout.php'?>>Logout</a>
+                    <a class="btn btn-secondary" href=<?php echo ROOT . '/app/logout.php'?>>Logout</a>
                 </li>
             </ul>
-            </div>
         </div>
     </div>
 </nav>
