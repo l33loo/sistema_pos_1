@@ -3,7 +3,7 @@
 // Palavra-passe: pass123
 
 require_once '../config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/login.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/login.inc.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
 
 $pageTitle = 'Login';
