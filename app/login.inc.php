@@ -43,7 +43,7 @@ function validarUtilizador(string $email, $pass, array $utilizadores): bool {
 function lerUtilizadores(): array {
     $listaUtilizadores = [];
 
-    $caminhoFicheiro = $_SERVER['DOCUMENT_ROOT']  . '/dados/utilizadores.txt';
+    $caminhoFicheiro = $_SERVER['DOCUMENT_ROOT'] . ROOT . '/dados/utilizadores.txt';
     if (file_exists($caminhoFicheiro)) {
         $ficheiroUtilizadores = fopen($caminhoFicheiro, 'r');
     } else {
