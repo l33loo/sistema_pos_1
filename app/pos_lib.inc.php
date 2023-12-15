@@ -21,8 +21,8 @@ function guardarArtigos(array $artigos): bool
 
     //escreve cada artigo da lista numa linha separando os 
     //itens desta mesma lista por ";"
-    foreach ($artigos as $artigo) {
-        $bytes = fwrite($ficheiro, implode(';', $artigo) . "\n");
+    foreach ($artigos as $barras => $artigo) {
+        $bytes = fwrite($ficheiro, implode(';', $artigo) . ';' . $barras . "\n");
         if ($bytes === false) {
             return false;
         }
@@ -45,9 +45,9 @@ function lerArtigos(): array
     
     $artigos = [];
     while(($linha = fgets($ficheiroArtigos)) !== false) {
-        $artigo = explode(";", trim($linha));
-
-        $artigos[$artigo[4]] = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);
+        $artigo = explode(';', trim($linha));
+        
+        $artigos = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);
     }
 
     return $artigos;
