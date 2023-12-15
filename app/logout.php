@@ -7,4 +7,4 @@ $_SESSION = [];
 session_destroy();
 setcookie('sessioncookie', '', time()-1);
 
-header('Location: ' . ROOT  . '/html/login.php');
+header('Location: ' . APP_ROOT  . '/html/login.php');

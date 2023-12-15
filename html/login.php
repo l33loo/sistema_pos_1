@@ -3,8 +3,8 @@
 // Palavra-passe: pass123
 
 require_once '../config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/login.inc.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
+require_once SERVER_ROOT . '/app/inc/login.inc.php';
+require_once SERVER_ROOT . '/html/components/head.inc.php';
 
 $pageTitle = 'Login';
 
@@ -14,7 +14,7 @@ echo getHeader($pageTitle);
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href=<?php echo ROOT . '/'?>>PoS</a>
+        <a class="navbar-brand" href=<?php echo APP_ROOT . '/'?>>PoS</a>
     </div>
 </nav>
 <div class="container">
@@ -42,4 +42,4 @@ echo getHeader($pageTitle);
                 <input class="btn btn-primary mb-3" type="submit" value="Iniciar Sessão" name="login">
             </form>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_end.inc.php'); ?>
+<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>

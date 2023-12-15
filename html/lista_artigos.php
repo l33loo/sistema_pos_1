@@ -1,16 +1,16 @@
 
 <?php
 require_once '../config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/session.inc.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/artigos.inc.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
+require_once SERVER_ROOT . '/app/inc/session.inc.php';
+require_once SERVER_ROOT . '/app/inc/artigos.inc.php';
+require_once SERVER_ROOT . '/html/components/head.inc.php';
 
 $artigos = lerArtigos();
 $pageTitle = 'Lista de artigos';
 
 // HTML
 echo getHeader($pageTitle);
-include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php');
+include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
 <h1><?php echo $pageTitle; ?></h1>
@@ -38,4 +38,4 @@ include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php'
     </tbody>
 </table>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_end.inc.php'); ?>
+<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>
