@@ -11,18 +11,18 @@ if (!empty($_POST['login'])) {
     if ($utilizadorEValido) {
         $_SESSION['autenticado'] = true;
         setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
-        header('Location: ' . ROOT  . '/');
+        header('Location: ' . APP_ROOT  . '/');
     } else {
         $mensagemErro = 'Utilizador ou palavra-passe incorrectos';
     }
 } else {
     if (!empty($_SESSION['autenticado']) && $_SESSION['autenticado'] === true) {
-        header('Location: ' . ROOT . '/');
+        header('Location: ' . APP_ROOT . '/');
     } else {
         if (!empty($_COOKIE['sessioncookie']) && $_COOKIE['sessioncookie'] === password_hash($password, PASSWORD_BCRYPT)) {
             $_SESSION['autenticado'] = true;
             setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
-            header('Location: '. ROOT . '/');
+            header('Location: '. APP_ROOT . '/');
         } else {
             setcookie('sessioncookie', '', time()-1);
         }
@@ -43,7 +43,7 @@ function validarUtilizador(string $email, $pass, array $utilizadores): bool {
 function lerUtilizadores(): array {
     $listaUtilizadores = [];
 
-    $caminhoFicheiro = $_SERVER['DOCUMENT_ROOT'] . ROOT . '/dados/utilizadores.txt';
+    $caminhoFicheiro = SERVER_ROOT . '/dados/utilizadores.txt';
     if (file_exists($caminhoFicheiro)) {
         $ficheiroUtilizadores = fopen($caminhoFicheiro, 'r');
     } else {

@@ -1,14 +1,14 @@
 <?php
 require_once './config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/session.inc.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/venda.inc.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
+require_once SERVER_ROOT . '/app/inc/session.inc.php';
+require_once SERVER_ROOT . '/app/inc/venda.inc.php';
+require_once SERVER_ROOT . '/html/components/head.inc.php';
 
 $pageTitle = 'Vendas';
 
 // HTML
 echo getHeader($pageTitle);
-include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php');
+include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
 <h1><?php echo $pageTitle; ?></h1>
@@ -19,13 +19,29 @@ include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php'
                 <div class="col">
                     <div class="form-group">
                         <label for="barras">Código de Barras</label>
-                        <input type="number" class="form-control" id="ean13" name="barras" required>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="barras"
+                            name="barras"
+                            inputmode="numeric"
+                            maxlength="13"
+                            minlength="13"
+                            pattern="\d{13,13}"
+                            required
+                        >
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="quantidade">Quantidade</label>
-                        <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="quantidade"
+                            name="quantidade"
+                            required
+                        >
                     </div>
                 </div>
             </div>
@@ -64,4 +80,4 @@ include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php'
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_end.inc.php'); ?>
+<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>

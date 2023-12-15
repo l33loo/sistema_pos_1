@@ -1,7 +1,7 @@
 <?php
 require_once '../config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/session.inc.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/artigos.inc.php';
+require_once SERVER_ROOT . '/app/inc/session.inc.php';
+require_once SERVER_ROOT . '/app/inc/artigos.inc.php';
 
 //ler Artigos
 $artigos = lerArtigos();
@@ -14,4 +14,4 @@ $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $_POST['iv
 
 guardarArtigos($artigos);
 
-header('Location: ' . ROOT . '/');
+header('Location: ' . APP_ROOT . '/');
