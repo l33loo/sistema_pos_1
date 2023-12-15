@@ -15,8 +15,8 @@
         </div>
 
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT']  . '/app/pos_lib.inc.php';
+require_once '../config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/pos_lib.inc.php';
 
 $artigos = lerArtigos();?> 
 

@@ -2,8 +2,8 @@
 // Utilizador: um@utilizador.pt
 // Palavra-passe: pass123
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT']  . '/app/login.inc.php';
+require_once '../config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/login.inc.php';
 ?>
 
 <!DOCTYPE html>
