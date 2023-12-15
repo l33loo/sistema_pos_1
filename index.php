@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/venda.inc.php';
+require_once './config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/venda.inc.php';
 ?>
 
 <!DOCTYPE html>
