@@ -4,6 +4,11 @@
 
 require_once '../config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/login.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
+
+// HTML
+echo getHeader('Login');
+include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
 ?>
 
 <!DOCTYPE html>
