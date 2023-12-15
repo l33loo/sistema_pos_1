@@ -16,7 +16,7 @@ include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
 <h1><?php echo $pageTitle; ?></h1>
 <?php if (!empty($mensagemErro)) { ?>
     <div class="alert alert-danger" role="alert">
-    <?php echo $mensagemErro ?>
+        <?php echo $mensagemErro ?>
     </div>
 <?php } ?>
 <form action="" method="post">

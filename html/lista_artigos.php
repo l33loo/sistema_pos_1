@@ -1,7 +1,7 @@
 
 <?php
 require_once '../config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/lib/pos.lib.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/inc/artigos.inc.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
 
 $artigos = lerArtigos();
