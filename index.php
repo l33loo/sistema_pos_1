@@ -19,13 +19,29 @@ include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php'
                 <div class="col">
                     <div class="form-group">
                         <label for="barras">Código de Barras</label>
-                        <input type="number" class="form-control" id="ean13" name="barras" required>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="barras"
+                            name="barras"
+                            inputmode="numeric"
+                            maxlength="13"
+                            minlength="13"
+                            pattern="\d{13,13}"
+                            required
+                        >
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="quantidade">Quantidade</label>
-                        <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="quantidade"
+                            name="quantidade"
+                            required
+                        >
                     </div>
                 </div>
             </div>
