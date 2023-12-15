@@ -1,6 +1,6 @@
 <?php
     session_start();
     if (empty($_SESSION['autenticado']) || $_SESSION['autenticado'] === false) {
-        header('Location: /html/login.php');
+        header('Location: ' . ROOT . '/html/login.php');
         exit;
     }
