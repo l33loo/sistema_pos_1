@@ -2,12 +2,14 @@
 require_once '../config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
 
+$pageTitle = 'Adicionar um novo artigo';
+
 // HTML
-echo getHeader('Adicionar novo artigo');
+echo getHeader($pageTitle);
 include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
 ?>
 
-<h1>Registo de artigo</h1>
+<h1><?php echo $pageTitle; ?></h1>
 <form action="/app/criar_artigo.php" method="post">
     Nome do artigo: <input class="form-control form-control-lg" type="text" name="nome" maxlength="12"><br>
     Preço Unitário: <input  class="form-control form-control-lg" type="text" name="preco" required><br>

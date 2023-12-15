@@ -5,13 +5,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/pos_lib.inc.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
 
 $artigos = lerArtigos();
+$pageTitle = 'Lista de artigos';
 
 // HTML
-echo getHeader('Lista de artigos');
+echo getHeader($pageTitle);
 include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
 ?>
 
-<h1>Lista de Artigos</h1>
+<h1><?php echo $pageTitle; ?></h1>
 <table class="table">
     <thead>
         <tr>

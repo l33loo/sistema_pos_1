@@ -3,12 +3,14 @@ require_once './config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/venda.inc.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
 
+$pageTitle = 'Vendas';
+
 // HTML
-echo getHeader('Vendas');
+echo getHeader($pageTitle);
 include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
 ?>
 
-<h1>Vendas</h1>
+<h1><?php echo $pageTitle; ?></h1>
 <div class="row">
 <div class="col-12 col-lg-5">
 <form method="post" action="">

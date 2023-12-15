@@ -6,12 +6,14 @@ require_once '../config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/login.inc.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/head.inc.php';
 
+$pageTitle = 'Login';
+
 // HTML
-echo getHeader('Login');
+echo getHeader($pageTitle);
 include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
 ?>
 
-<h1>Login</h1>
+<h1><?php echo $pageTitle; ?></h1>
 <?php if (!empty($mensagemErro)) { ?>
     <div class="alert alert-danger" role="alert">
     <?php echo $mensagemErro ?>
