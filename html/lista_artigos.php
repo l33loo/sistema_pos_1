@@ -33,10 +33,10 @@ $artigos = lerArtigos();?>
             <tbody>
                 <?php foreach ($artigos as $barras => $artigo) { ?>
                 <tr>
-                    <td><?php echo $artigo[$barras]['codigo'];?>
-                    <td><?php echo $artigo[$barras]['nome'];?></td>
-                    <td><?php echo $artigo[$barras]['preco'] . ' €';?></td>
-                    <td><?php echo $artigo[$barras]['iva'];?></td>
+                    <td><?php echo $artigo['codigo'];?>
+                    <td><?php echo $artigo['nome'];?></td>
+                    <td><?php echo $artigo['preco'] . ' €';?></td>
+                    <td><?php echo $artigo['iva'];?></td>
                     <td><?php echo $barras;?></td>
                 </tr>
                 <?php } ?>
