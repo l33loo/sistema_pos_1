@@ -14,7 +14,10 @@
             <h1>Lista de Artigos</h1>
         </div>
 
-<?php require_once '../app/pos_lib.php';
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once $_SERVER['DOCUMENT_ROOT']  . '/app/pos_lib.inc.php';
+
 $artigos = lerArtigos();?> 
 
         <table class="table">

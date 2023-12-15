@@ -17,12 +17,12 @@ function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, 
  //guarda um artigo
 function guardarArtigos(array $artigos): bool
 {
-    $ficheiro = fopen("/dados/artigos.txt", "w") or die('Impossível abrir o ficheiro');
+    $ficheiro = fopen($_SERVER['DOCUMENT_ROOT']  . '/dados/artigos.txt', 'w') or die('Impossível abrir o ficheiro');
 
     //escreve cada artigo da lista numa linha separando os 
     //itens desta mesma lista por ";"
     foreach ($artigos as $artigo) {
-        $bytes = fwrite($ficheiro, implode(";", $artigo) . "\n");
+        $bytes = fwrite($ficheiro, implode(';', $artigo) . "\n");
         if ($bytes === false) {
             return false;
         }
@@ -36,9 +36,9 @@ function guardarArtigos(array $artigos): bool
 function lerArtigos(): array
 {
 
-    $nomeFicheiro = "../dados/artigos.txt";
+    $nomeFicheiro = $_SERVER['DOCUMENT_ROOT']  . '/dados/artigos.txt';
     if(file_exists($nomeFicheiro)) {
-        $ficheiroArtigos = fopen($nomeFicheiro, "r");
+        $ficheiroArtigos = fopen($nomeFicheiro, 'r');
     } else {
         return [];
     }

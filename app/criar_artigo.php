@@ -1,6 +1,5 @@
 <?php
-
-require_once '/app/pos_lib.php';
+require_once $_SERVER['DOCUMENT_ROOT']  . '/app/pos_lib.inc.php';
 
 //ler Artigos
 $artigos = lerArtigo();
@@ -13,4 +12,4 @@ $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $_POST['iv
 
 guardarArtigos($artigos);
 
-header('Location: /index.php');
+header('Location: ' . ROOT . '/');
