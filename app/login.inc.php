@@ -10,19 +10,19 @@ if (!empty($_POST['login'])) {
     
     if ($utilizadorEValido) {
         $_SESSION['autenticado'] = true;
-        setcookie('sessioncookie', $email . "@" .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
-        header('Location: /index.php');
+        setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
+        header('Location: ' . ROOT  . '/');
     } else {
         $mensagemErro = 'Utilizador ou palavra-passe incorrectos';
     }
 } else {
     if (!empty($_SESSION['autenticado']) && $_SESSION['autenticado'] === true) {
-        header('Location: /index.php');
+        header('Location: ' . ROOT . '/');
     } else {
         if (!empty($_COOKIE['sessioncookie']) && $_COOKIE['sessioncookie'] === password_hash($password, PASSWORD_BCRYPT)) {
             $_SESSION['autenticado'] = true;
-            setcookie('sessioncookie', $email . "@" .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
-            header('Location: /index.php');
+            setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
+            header('Location: '. ROOT . '/');
         } else {
             setcookie('sessioncookie', '', time()-1);
         }
@@ -43,15 +43,15 @@ function validarUtilizador(string $email, $pass, array $utilizadores): bool {
 function lerUtilizadores(): array {
     $listaUtilizadores = [];
 
-    $caminhoFicheiro = "../dados/utilizadores.txt";
+    $caminhoFicheiro = $_SERVER['DOCUMENT_ROOT']  . '/dados/utilizadores.txt';
     if (file_exists($caminhoFicheiro)) {
-        $ficheiroUtilizadores = fopen($caminhoFicheiro, "r");
+        $ficheiroUtilizadores = fopen($caminhoFicheiro, 'r');
     } else {
         return $listaUtilizadores;
     }
     
     while (($linha = fgets($ficheiroUtilizadores)) !== false) {
-        $utilizador = explode(";", $linha);
+        $utilizador = explode(';', $linha);
         $listaUtilizadores[trim($utilizador[0])] = trim($utilizador[1]);
     }
 
