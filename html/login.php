@@ -10,7 +10,7 @@ $pageTitle = 'Login';
 
 // HTML
 echo getHeader($pageTitle);
-include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_start.inc.php');
 ?>
 
 <h1><?php echo $pageTitle; ?></h1>
@@ -35,4 +35,4 @@ include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php');
     <input class="btn btn-primary mb-3" type="submit" value="Iniciar Sessão" name="login">
 </form>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/end.inc.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/body_end.inc.php'); ?>
