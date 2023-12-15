@@ -12,4 +12,4 @@ $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $_POST['iv
 
 guardarArtigos($artigos);
 
-header('Location: ' . ROOT);
+header('Location: ' . ROOT . '/');
