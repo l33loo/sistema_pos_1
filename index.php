@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . ROOT . '/app/venda.inc.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/components/nav.inc.php') ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . ROOT . '/html/components/nav.inc.php') ?>
     <div class="container">
         <h1>Vendas</h1>
         <div class="row">
