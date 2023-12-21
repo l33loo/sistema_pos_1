@@ -72,7 +72,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <td><?php echo $venda["quantidade"]; ?></td>
                     <td><?php echo $venda["iva"]; ?></td>
                     <td><?php echo $venda["precoUni"]; ?></td>
-                    <td><?php echo $venda["quantidade"]*$venda["iva"]*$venda["precoUni"]; ?></td>
+                    <td><?php echo $venda["quantidade"]*(1+$venda["iva"]/100)*$venda["precoUni"]; ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
