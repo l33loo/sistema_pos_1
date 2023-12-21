@@ -11,7 +11,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
 <h1><?php echo $pageTitle; ?></h1>
-<form action="/app/criar_artigo.php" method="post">
+<form action="<?php echo APP_ROOT . '/app/criar_artigo.php' ?>" method="post">
     Nome do artigo: <input class="form-control form-control-lg" type="text" name="nome" maxlength="12"><br>
     Preço Unitário: <input  class="form-control form-control-lg" type="text" name="preco" required><br>
     <label for="iva"> Escolha a taxa de IVA</label>
