@@ -14,7 +14,7 @@
 
 // Função para guardar a conta no arquivo CSV
 function guardar($conta) {
-    $csvFileName = 'contas.csv';
+    $csvFileName = SERVER_ROOT . '/dados/contas.csv';
     $file = fopen($csvFileName, 'a'); 
     if ($file) {
         // Concatena os valores com ponto e vírgula e escreve no arquivo
@@ -27,7 +27,7 @@ function guardar($conta) {
 }
 
 // Inicia ou recupera o contador de clientes a partir do arquivo CSV
-$csvFileName = 'contas.csv';
+$csvFileName = SERVER_ROOT . '/dados/contas.csv';
 $contadorClientes = 0;
 
 if (($handle = fopen($csvFileName, 'r')) !== false) {

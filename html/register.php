@@ -18,7 +18,7 @@
         
         <div class="row">
             <div class="col">
-                <form action="criar_conta.php" method="post" >
+                <form action="<?php echo APP_ROOT . '/app/criar_conta.php' ?>" method="post" >
                     Nome do Cliente <input class="form-control form-control-lg" type="text" name="nome" id="">
                     <p style="color: grey;"> O nome deverá ser o nome completo.</p>
                     <br>
