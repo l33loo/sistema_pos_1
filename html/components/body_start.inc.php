@@ -14,6 +14,9 @@
                     <a class="nav-link" href=<?php echo APP_ROOT . '/html/lista_artigos.php'?>>Lista de Artigos</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href=<?php echo APP_ROOT . '/html/register.php'?>>Criar Conta</a>
+                </li>
+                <li class="nav-item">
                     <a class="btn btn-secondary" href=<?php echo APP_ROOT . '/app/logout.php'?>>Logout</a>
                 </li>
             </ul>
