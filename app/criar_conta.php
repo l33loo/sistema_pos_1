@@ -13,31 +13,9 @@
 <?php
 
 require_once '../config/config.php';
+require_once SERVER_ROOT . '/app/inc/contas.inc.php';
 
-// Função para guardar a conta no arquivo CSV
-function guardar($conta) {
-    $csvFileName = SERVER_ROOT . '/dados/contas.csv';
-    $file = fopen($csvFileName, 'a'); 
-    if ($file) {
-        // Concatena os valores com ponto e vírgula e escreve no arquivo
-        fwrite($file, implode(';', $conta));
-        fclose($file);
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Inicia ou recupera o contador de clientes a partir do arquivo CSV
-$csvFileName = SERVER_ROOT . '/dados/contas.csv';
-$contadorClientes = 0;
-
-if (($handle = fopen($csvFileName, 'r')) !== false) {
-    while (($data = fgetcsv($handle, 1000, ';')) !== false) {
-        $contadorClientes++;
-    }
-    fclose($handle);
-}
+$contas = lerContas();
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -63,13 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Verifica se $nif tem o número correto de dígitos
                 if (strlen($_POST['nif']) === 9) {
-                
-                    // Incrementa o contador global de clientes
-                    $contadorClientes++;
 
                     // Dados do cliente com o número de ordem
                     $cliente = [
-                        'numero_ordem' => $contadorClientes, // Inteiro sequencial único a cada cliente
+                        'numero_ordem' => count($contas) + 1, // Inteiro sequencial único a cada cliente
                         'nome' => $_POST['nome'], 
                         'nif' => $_POST['nif'], // Cadeira de caracteres de dimensão 9 contendo apenas dígitos
                         'morada' => $_POST['morada'], 
@@ -79,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ];
 
                     // Chama a função para guardar o cliente
-                    if (guardar($cliente)) {
+                    if (guardarConta($cliente)) {
                         echo '<p class="alert alert-success">Conta Criada com Sucesso</p>';
                     } else {
                         echo '<p class="alert alert-danger">Erro a criar a conta</p>';
