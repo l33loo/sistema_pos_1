@@ -26,17 +26,17 @@ if (empty($preço) || !is_float($preço)) {
 
     //Verifica o codigo de barras    
 
-function ean13CheckDigit(string $digitos): string 
+function ean13CheckDigit(string $barras): string 
 {
     //Adiciona o valor dos digitos nas posições ímpares
-    $impar = $digitos[1] + $digitos[3] + $digitos[5] + $digitos[7] + $digitos[9] + $digitos[11];
+    $impar = $barras[1] + $barras[3] + $barras[5] + $barras[7] + $barras[9] + $barras[11];
 
     //Multiplica esse resultado por 3
     $produto = $impar * 3;
 
     //Adiciona os valores dos digitos nas posições pares
 
-    $pares = $digitos[0] + $digitos[2] + $digitos[4] + $digitos[6] + $digitos[8] + $digitos[10]; 
+    $pares = $barras[0] + $barras[2] + $barras[4] + $barras[6] + $barras[8] + $barras[10]; 
     
     // soma o resultado de 2 com o resultado de 3
     $total = $produto + $pares;
@@ -48,10 +48,10 @@ function ean13CheckDigit(string $digitos): string
     $verifica = $divide - $total;
 
     return $verifica;
-
 }
 
-if (empty($codigoBarras) || strlen($codigoBarras != 12) or strstr ($codigoBarras, ' ' ) == FALSE) {
+
+if (empty($barras) || strlen($barras != 12) or strstr ($barras, ' ' ) == FALSE) {
     echo "Insira um Código de Barras válido";
     $erro = 1;
 }

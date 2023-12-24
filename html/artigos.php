@@ -21,7 +21,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         <option value="9">9</option>
         <option value="16">16</option>
     </select> </br> </br>
-    Código de barras <input class="form-control form-control-lg" type="text" name="barras" maxlength="13" minlength="13" required>
+    Código de barras <input class="form-control form-control-lg" type="text" name="barras" maxlength="12" minlength="12" required>
     <br>
     <button type="submit" class="btn btn-primary">Registar Artigo</button>
     <enctype="multipart/form-data"></enctype>
