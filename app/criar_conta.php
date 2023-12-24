@@ -12,6 +12,8 @@
 
 <?php
 
+require_once '../config/config.php';
+
 // Função para guardar a conta no arquivo CSV
 function guardar($conta) {
     $csvFileName = SERVER_ROOT . '/dados/contas.csv';
