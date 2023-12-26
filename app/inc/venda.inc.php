@@ -1,14 +1,14 @@
 <?php
 
+$errorMsg = '';
+
 if (!empty($_POST)) {
     if (empty($_POST['barras'])) {
-        // error
-        echo 'barras wrong';
+        $errorMsg = 'barras wrong';
     }
     
     if (empty($_POST['quantidade'])) {
-        // error
-        echo 'quantidade wrong';
+        $errorMsg = 'quantidade wrong';
     }
 
     if (!empty($_POST['barras']) && !empty($_POST['quantidade'])) {
@@ -16,19 +16,14 @@ if (!empty($_POST)) {
         $artigos = lerArtigos();
 
         if (!array_key_exists($_POST['barras'], $artigos)) {
-            // error
-            echo 'barras does not exist';
+            $errorMsg = 'barras does not exist';
         } else {
             $artigo = $artigos[$_POST['barras']];
             $vendas = adicionarVenda(lerVendas(), $artigo['codigo'], $artigo['nome'], $_POST['quantidade'], $artigo['preco'], $artigo['iva']);
             $guardado = guardarVendas($vendas);
 
             if (!$guardado) {
-                // error
-                echo 'error saving';
-            } else {
-                // success message
-                echo 'venda added with success <3';
+                $errorMsg = 'error saving';
             }
         }
     }
@@ -39,6 +34,7 @@ function lerVendas(): array {
 
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
     if (!file_exists($caminhoFicheiro)) {
+        // create file if doesn't exist
         echo 'ler: file doesnt exist';
         return $listaVendas;
     }
@@ -48,13 +44,13 @@ function lerVendas(): array {
     while (($linha = fgets($ficheiroVendas)) !== false) {
         $venda = explode(";", trim($linha));
         $listaVendas[] = array(
-            "codigo" => $venda[0],
-            "nome" => $venda[1],
-            "quantidade" => $venda[2],
-            "precoUni" => $venda[3],
-            "iva" => $venda[4],
-            "cliente" => $venda[5],
-            "desconto" => $venda[6],
+            'codigo' => $venda[0],
+            'nome' => $venda[1],
+            'quantidade' => $venda[2],
+            'precoUni' => $venda[3],
+            'iva' => $venda[4],
+            'cliente' => $venda[5],
+            'desconto' => $venda[6],
         );
     }
 
@@ -63,13 +59,13 @@ function lerVendas(): array {
 
 function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente = 0, int $desconto = 0): array {
     $listaVendas[] = array(
-        "codigo" => $codigo,
-        "nome" => $nome,
-        "quantidade" => $quantidade,
-        "precoUni" => $precoUnitario,
-        "iva" => $iva,
-        "cliente" => $cliente,
-        "desconto" => $desconto,
+        'codigo' => $codigo,
+        'nome' => $nome,
+        'quantidade' => $quantidade,
+        'precoUni' => $precoUnitario,
+        'iva' => $iva,
+        'cliente' => $cliente,
+        'desconto' => $desconto,
     );
 
     return $listaVendas;
@@ -78,6 +74,7 @@ function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $qu
 function guardarVendas(array $listaVendas): bool {
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
     if (!file_exists($caminhoFicheiro)) {
+        // fix error
         echo 'guardar: file doesnt exist';
         return false;
     }

@@ -51,6 +51,11 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <input type="submit" value="Adicionar">
                 </div>
             </div>
+            <?php
+                if (!empty($errorMsg)) {
+                    echo "<div class=\"row\"><div class=\"col\"><div class=\"alert alert-danger\">$errorMsg</div></div></div>";
+                }
+            ?>
         </form>
     </div>
     <div class="col-12 col-lg-7">
