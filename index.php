@@ -96,7 +96,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <?php }
                     if (!empty($conta['cp']) || !empty($conta['localidade'])) { ?>
                         <div>
-                            <?php echo ($conta['cp'] || '') . ' - ' . ($conta['localidade'] || ''); ?>
+                            <?php echo $conta['codigoPostal'] . ' - ' . $conta['localidade']; ?>
                         </div>
                     <?php } ?>
                     <div>

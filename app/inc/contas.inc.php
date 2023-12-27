@@ -56,8 +56,13 @@ function lerContas(): array {
 function lerConta(?string $contribuente): array {
     $contas = lerContas();
 
-    $contribuente_consumidor_final = '999999990';
-    if ($contribuente === null || array_key_exists($contribuente_consumidor_final, $contas)) {
+    if ($contribuente === null) {
+        $contribuente_consumidor_final = '999999990';
+        if (!array_key_exists($contribuente_consumidor_final, $contas)) {
+            // TODO: error
+            return [];
+        }
+
         $conta = $contas[$contribuente_consumidor_final];
         $conta['contribuente'] = $contribuente_consumidor_final;
 
@@ -65,6 +70,7 @@ function lerConta(?string $contribuente): array {
     }
     
     if (!array_key_exists($contribuente, $contas)) {
+        // TODO: error
         return [];
     }
 
