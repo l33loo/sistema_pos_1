@@ -2,6 +2,7 @@
 require_once './config/config.php';
 require_once SERVER_ROOT . '/app/inc/session.inc.php';
 require_once SERVER_ROOT . '/app/inc/artigos.inc.php';
+require_once SERVER_ROOT . '/app/inc/contas.inc.php';
 require_once SERVER_ROOT . '/app/inc/venda.inc.php';
 require_once SERVER_ROOT . '/html/components/head.inc.php';
 
@@ -48,17 +49,56 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
             </div>
             <div class="row">
                 <div class="col">
+                    <div class="form-group">
+                        <label for="contribuente">Cod Cliente</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input
+                            id="contribuente"
+                            name="contribuente"
+                            type="text"
+                            inputmode="numeric"
+                            class="form-control"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <input type="submit" value="Adicionar">
                 </div>
             </div>
-            <?php
-                if (!empty($errorMsg)) {
-                    echo "<div class=\"row\"><div class=\"col\"><div class=\"alert alert-danger\">$errorMsg</div></div></div>";
-                }
-            ?>
+            <?php if (!empty($errorMsg)) { ?>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-danger">
+                            <?php echo $errorMsg ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </form>
     </div>
     <div class="col-12 col-lg-7">
+        <? $conta = lerConta($_POST['contribuente']);
+        if (count($conta) > 0) { ?>
+            <div>
+                <div>
+                    <?php echo $conta[1] ?>
+                </div>
+                <div>
+                    <?php echo $conta[3] ?>
+                </div>
+                <div>
+                    <?php echo $conta[4] . ' - ' . $conta[5] ?>
+                </div>
+                <div>
+                    <?php echo 'Contribuente: ' . $conta[6] ?>
+                </div>
+            </div>
+        <?php } ?>
         <table class="table">
             <thead>
                 <tr>
