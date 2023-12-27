@@ -40,9 +40,9 @@ function lerContas(): array {
     
     while (($linha = fgets($ficheiroContas)) !== false) {
         $conta = explode(";", trim($linha));
-        $listaContas[$conta[0]] = array(
+        $listaContas[$conta[2]] = array(
+            'codigo' => $conta[0],
             'nomeCliente' => $conta[1],
-            'nif' => $conta[2],
             'morada' => $conta[3],
             'codigoPostal' => $conta[4],
             'localidade' => $conta[5],
@@ -51,6 +51,33 @@ function lerContas(): array {
     }
 
     return $listaContas;
+}
+
+function lerConta(?string $contribuente): array {
+    $contas = lerContas();
+
+    if (!$contribuente) {
+        $contribuente_consumidor_final = '999999990';
+        if (!array_key_exists($contribuente_consumidor_final, $contas)) {
+            // TODO: error
+            return [];
+        }
+
+        $conta = $contas[$contribuente_consumidor_final];
+        $conta['contribuente'] = $contribuente_consumidor_final;
+
+        return $conta;
+    }
+    
+    if (!array_key_exists($contribuente, $contas)) {
+        // TODO: error
+        return [];
+    }
+
+    $conta = $contas[$contribuente];
+    $conta['contribuente'] = $contribuente;
+
+    return $conta;
 }
 
 function adicionarConta(array $contas, string $nomeCliente, string $nif, string $morada, string $codigoPostal, string $localidade, int $desconto, int $codigo): array
