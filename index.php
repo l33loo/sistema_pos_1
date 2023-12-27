@@ -67,7 +67,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="submit" value="Adicionar">
+                    <input type="submit" name="submit" value="Adicionar">
                 </div>
             </div>
             <?php if (!empty($errorMsg)) { ?>
@@ -82,23 +82,29 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         </form>
     </div>
     <div class="col-12 col-lg-7">
-        <? $conta = lerConta($_POST['contribuente']);
-        if (count($conta) > 0) { ?>
-            <div>
+        <?php if (!empty($_POST['submit'])) {
+            $conta = lerConta($_POST['contribuente']);
+            if (count($conta) > 0) { ?>
                 <div>
-                    <?php echo $conta[1] ?>
+                    <div>
+                        <?php echo $conta['nomeCliente']; ?>
+                    </div>
+                    <?php if (!empty($conta['morada'])) { ?>
+                        <div>
+                            <?php echo $conta['morada']; ?>
+                        </div>
+                    <?php }
+                    if (!empty($conta['cp']) || !empty($conta['localidade'])) { ?>
+                        <div>
+                            <?php echo ($conta['cp'] || '') . ' - ' . ($conta['localidade'] || ''); ?>
+                        </div>
+                    <?php } ?>
+                    <div>
+                        <?php echo 'Contribuente: ' . $conta['contribuente']; ?>
+                    </div>
                 </div>
-                <div>
-                    <?php echo $conta[3] ?>
-                </div>
-                <div>
-                    <?php echo $conta[4] . ' - ' . $conta[5] ?>
-                </div>
-                <div>
-                    <?php echo 'Contribuente: ' . $conta[6] ?>
-                </div>
-            </div>
-        <?php } ?>
+            <?php }
+        } ?>
         <table class="table">
             <thead>
                 <tr>

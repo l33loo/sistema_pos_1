@@ -53,14 +53,25 @@ function lerContas(): array {
     return $listaContas;
 }
 
-function lerConta(int $contribuente): array {
+function lerConta(?string $contribuente): array {
     $contas = lerContas();
+
+    $contribuente_consumidor_final = '999999990';
+    if ($contribuente === null || array_key_exists($contribuente_consumidor_final, $contas)) {
+        $conta = $contas[$contribuente_consumidor_final];
+        $conta['contribuente'] = $contribuente_consumidor_final;
+
+        return $conta;
+    }
     
     if (!array_key_exists($contribuente, $contas)) {
         return [];
     }
 
-    return $contas[$codigo];
+    $conta = $contas[$contribuente];
+    $conta['contribuente'] = $contribuente;
+
+    return $conta;
 }
 
 function adicionarConta(array $contas, string $nomeCliente, string $nif, string $morada, string $codigoPostal, string $localidade, int $desconto, int $codigo): array
