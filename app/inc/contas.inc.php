@@ -56,7 +56,7 @@ function lerContas(): array {
 function lerConta(?string $contribuente): array {
     $contas = lerContas();
 
-    if ($contribuente === null) {
+    if (!$contribuente) {
         $contribuente_consumidor_final = '999999990';
         if (!array_key_exists($contribuente_consumidor_final, $contas)) {
             // TODO: error

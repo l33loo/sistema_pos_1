@@ -14,12 +14,13 @@ if (!empty($_POST)) {
     if (!empty($_POST['barras']) && !empty($_POST['quantidade'])) {
         // validate types
         $artigos = lerArtigos();
+        $conta = lerConta($_POST['contribuente']);
 
         if (!array_key_exists($_POST['barras'], $artigos)) {
             $errorMsg = 'barras does not exist';
         } else {
             $artigo = $artigos[$_POST['barras']];
-            $vendas = adicionarVenda(lerVendas(), $artigo['codigo'], $artigo['nome'], $_POST['quantidade'], $artigo['preco'], $artigo['iva']);
+            $vendas = adicionarVenda(lerVendas(), $artigo['codigo'], $artigo['nome'], $_POST['quantidade'], $artigo['preco'], $artigo['iva'], $conta['codigo']);
             $guardado = guardarVendas($vendas);
 
             if (!$guardado) {
@@ -57,7 +58,7 @@ function lerVendas(): array {
     return $listaVendas;
 }
 
-function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente = 0, int $desconto = 0): array {
+function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente, int $desconto = 0): array {
     $listaVendas[] = array(
         'codigo' => $codigo,
         'nome' => $nome,
@@ -90,4 +91,16 @@ function guardarVendas(array $listaVendas): bool {
 
     fclose($ficheiroVendas);
     return true;
+}
+
+function vendasDaConta(?string $contribuente): array {
+    $conta = lerConta($contribuente);
+    $vendas = lerVendas();
+    $vendasDaConta = [];
+    foreach ($vendas as $venda) {
+        if ($venda['cliente'] === $conta['codigo']) {
+            $vendasDaConta[] = $venda;
+        }
+    }
+    return $vendasDaConta;
 }

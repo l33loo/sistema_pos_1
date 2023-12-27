@@ -61,6 +61,12 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             type="text"
                             inputmode="numeric"
                             class="form-control"
+                            minlength="9"
+                            maxlength="9"
+                            pattern="\d{9,9}"
+                            <?php if (!empty($_POST['contribuente'])) { ?>
+                                value="<?php echo $_POST['contribuente']; ?>"
+                            <?php } ?>
                         >
                     </div>
                 </div>
@@ -117,16 +123,18 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                 </tr>
             </thead>
             <tbody>
-                <?php foreach (lerVendas() as $codigo=>$venda) { ?>
-                <tr>
-                    <th scope="row"><?php echo $codigo; ?></th>
-                    <td><?php echo $venda["nome"]; ?></td>
-                    <td><?php echo $venda["quantidade"]; ?></td>
-                    <td><?php echo $venda["iva"]; ?></td>
-                    <td><?php echo $venda["precoUni"]; ?></td>
-                    <td><?php echo $venda["quantidade"]*(1+$venda["iva"]/100)*$venda["precoUni"]; ?></td>
-                </tr>
-                <?php } ?>
+                <?php if (!empty($_POST['submit'])) {
+                foreach (vendasDaConta($_POST['contribuente']) as $venda) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $venda['codigo']; ?></th>
+                        <td><?php echo $venda["nome"]; ?></td>
+                        <td><?php echo $venda["quantidade"]; ?></td>
+                        <td><?php echo $venda["iva"]; ?></td>
+                        <td><?php echo $venda["precoUni"]; ?></td>
+                        <td><?php echo $venda["quantidade"]*(1+$venda["iva"]/100)*$venda["precoUni"]; ?></td>
+                    </tr>
+                    <?php }
+                } ?>
             </tbody>
         </table>
     </div>
