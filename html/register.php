@@ -18,32 +18,126 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         <div class="row">
             <div class="col">
                 <form action="<?php echo APP_ROOT . '/app/criar_conta.php' ?>" method="post" >
-                    Nome do Cliente <input class="form-control form-control-lg" type="text" name="nome" id="">
-                    <p style="color: grey;"> O nome deverá ser o nome completo.</p>
-                    <br>
-                    NIF<input class="form-control form-control-lg" type="number" name="nif" id="" minlength="9" maxlength="9">
-                    <p style="color: grey;"> O NIF terá de ter apenas 9 digitos.</p>
-                    <br>
-                    Morada<input class="form-control form-control-lg" type="text" name="morada" id="">
-                    <p style="color: grey;"> A Morada terá de ter a Rua e de seguida uma virgula com o número da Porta.</p>
-                    <br>
-                    <div>
-                        <label for="cp1">Código Postal</label>
-                        <div style="display: flex; align-items: center;">
-                            <input class="form-control form-control-lg" style="min-width: 80px; max-width: 120px;" type="text" name="cp1" id="cp1" minlength="4" maxlength="4">
-                            <span style="margin: 0 5px;">-</span>
-                            <input class="form-control form-control-lg" style="min-width: 80px; max-width: 120px;" type="text" name="cp2" id="cp2" minlength="3" maxlength="3">
+                    <div class="row py-2">
+                        <div class="col">
+                            <label class="form-label" for="nome">Nome do Cliente</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="nome"
+                                id="nome"
+                                required
+                            >
                         </div>
-                        <p style="color: grey;"> O código postal terá de ter 4 caracteres no primeiro campo e 3 caracteres no segundo campo.</p>
-                    </div>                                                       
-                    <br>                    
-                    Localidade<input class="form-control form-control-lg" type="text" name="localidade" id="">
-                    <p style="color: grey;"> A localidade do client. Exemplo: Ponta Delgada</p>
-                    <br>
-                    Desconto<input class="form-control form-control-lg" type="number" name="desconto" id="">
-                    <p style="color: grey;"> O desconto é apenas entre 0% e 15%.</p>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Criar Conta</button>
+                        <div class="col">
+                            <label class="form-label" for="nif">NIF</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                inputmode="numeric"
+                                name="nif"
+                                id="nif"
+                                pattern="\d{9}"
+                                title="O número de contribuente deve ter 9 dígitos"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <fieldset class="py-2">
+                        <legend class="form-label" style="font-size: 1rem;">
+                            Morada
+                        </legend>
+                        <div class="row">
+                            <div class="col-2">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="porta"
+                                    id="porta"
+                                    required
+                                >
+                                <label class="form-text text-muted" for="porta">Número de Porta</label>
+                            </div>
+                            <div class="col-10">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="rua"
+                                    id="rua"
+                                    required
+                                >
+                                <label class="form-text text-muted" for="rua">Rua</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row py-2">
+                        <div class="col-3">
+                            <fieldset>
+                                <legend class="form-label" style="font-size: 1rem;">
+                                    Código Postal
+                                </legend>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            name="cp1"
+                                            id="cp1"
+                                            inputmode="numeric"
+                                            pattern="\d{4}"
+                                            title="Os quatros primeiros dígitos do código postal"
+                                            required
+                                        >
+                                    </div>
+                                    <div class="col-1">-</div>
+                                    <div class="col-5">
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            name="cp2"
+                                            id="cp2"
+                                            inputmode="numeric"
+                                            pattern="\d{3}"
+                                            title="Os três últimos dígitos do código postal"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col">
+                            <label for="localidade" class="form-label">
+                                Localidade
+                            </label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="localidade"
+                                id="localidade"
+                                required
+                            >
+                        </div>
+                        <div class="col">
+                            <label for="desconto" class="form-label">Desconto</label>
+                            <input
+                                class="form-control"
+                                type="number"
+                                name="desconto"
+                                id="desconto"
+                                min="0"
+                                max="15"
+                                value="0"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary" value="Criar Conta">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
