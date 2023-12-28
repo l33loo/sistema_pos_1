@@ -8,10 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href=<?php echo APP_ROOT . '/html/artigos.php'?>>Criar Artigo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=<?php echo APP_ROOT . '/html/lista_artigos.php'?>>Lista de Artigos</a>
+                    <a class="nav-link" href=<?php echo APP_ROOT . '/html/artigos.php'?>>Artigos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href=<?php echo APP_ROOT . '/html/register.php'?>>Criar Conta</a>

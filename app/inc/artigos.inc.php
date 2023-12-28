@@ -1,5 +1,16 @@
 <?php
 
+$artigos = lerArtigos();
+if (isset($_POST['submit'])) {
+    // TODO: validate fields + errors
+    $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $_POST['iva'], $_POST['barras']);
+    $guardado = guardarArtigos($artigos);
+
+    if ($guardado) {
+        $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
+    }
+}
+
 //adicionar um artigo
 function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras, int $id = 0): array
 {
