@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (
         !empty($_POST['nome']) &&
         !empty($_POST['nif']) &&
-        !empty($_POST['morada']) &&
+        !empty($_POST['porta']) &&
+        !empty($_POST['rua']) &&
         !empty($_POST['cp1']) &&
         !empty($_POST['cp2']) &&
         !empty($_POST['localidade']) &&
@@ -47,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'numero_ordem' => count($contas) + 1, // Inteiro sequencial único a cada cliente
                         'nome' => $_POST['nome'], 
                         'nif' => $_POST['nif'], // Cadeira de caracteres de dimensão 9 contendo apenas dígitos
-                        'morada' => $_POST['morada'], 
+                        // Cadeira de caracteres contendo a rua e o número de porta separados por vírgula (,)
+                        'morada' => $_POST['rua'] . ', ' . $_POST['porta'],
                         'cp' => $_POST['cp1'] . '-' . $_POST['cp2'],  // Formato: XXXX-YYY
                         'localidade' => $_POST['localidade'],
                         'desconto' => $_POST['desconto'],  // Entre 0-15
