@@ -27,9 +27,8 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             id="barras"
                             name="barras"
                             inputmode="numeric"
-                            maxlength="13"
-                            minlength="13"
-                            pattern="\d{13,13}"
+                            pattern="\d{13}"
+                            title="O código de barras deve ter 13 dígitos"
                             required
                         >
                     </div>
@@ -61,9 +60,8 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             type="text"
                             inputmode="numeric"
                             class="form-control"
-                            minlength="9"
-                            maxlength="9"
-                            pattern="\d{9,9}"
+                            pattern="\d{9}"
+                            title="O número de contribuente deve ter 9 dígitos"
                             <?php if (!empty($_POST['contribuente'])) { ?>
                                 value="<?php echo $_POST['contribuente']; ?>"
                             <?php } ?>
