@@ -1,16 +1,13 @@
-<html>
-<body>
-
 <?php
-
 session_start();
-
+require_once './config/config.php';
+require_once SERVER_ROOT . '/app/criar_artigo.php';
 print_r($_POST);
 
 $nome = trim($_POST["nome"]);
 $preço = trim($_POST["preco"]);
 $erro = 0;
-
+$barras = trim($_POST["barras"]);
 //Verifica se existem erros nos campos
 //verifica se existe erros no $nome
 if (empty($nome)) {
@@ -49,6 +46,9 @@ function ean13CheckDigit(string $barras): string
 
     return $verifica;
 }
+$barras = 123123123123;
+$ean13= ean13CheckDigit($barras);
+$codigo_barras = $barras . $ean13;
 
 
 if (empty($barras) || strlen($barras != 12) or strstr ($barras, ' ' ) == FALSE) {
@@ -61,5 +61,3 @@ if ($erro == 0) {
     echo "Todos os campos foram preenchidos corretamente!";
 }
 ?>
-</body>
-</html>

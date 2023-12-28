@@ -8,7 +8,6 @@ function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, 
         'nome' => $nome,
         'preco' => $preco,
         'iva' => $iva,
-        'barras' => $barras,
     ];
 
     $artigos[$barras] = $artigo;
