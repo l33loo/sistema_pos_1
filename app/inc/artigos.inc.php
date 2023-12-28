@@ -1,18 +1,18 @@
 <?php
+// Lógica back-end para Artigos
 
-//adicionar um artigo
-function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras, int $id = 0): array
-{
-    $artigo = [
-        'codigo' => $id === 0 ? count($artigos) + 1 :$id,
-        'nome' => $nome,
-        'preco' => $preco,
-        'iva' => $iva,
-    ];
+require_once 'lib_artigos.inc.php';
 
-    $artigos[$barras] = $artigo;
-    return $artigos;
- }
+$artigos = lerArtigos();
+if (isset($_POST['submit'])) {
+    // TODO: validate fields + errors
+    $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $_POST['iva'], $_POST['barras']);
+    $guardado = guardarArtigos($artigos);
+
+    if ($guardado) {
+        $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
+    }
+}
 
  //guarda um artigo
 function guardarArtigos(array $artigos): bool
@@ -31,25 +31,5 @@ function guardarArtigos(array $artigos): bool
     //fechar o ficheiro
     fclose($ficheiro);
     return true;
-}
-
-function lerArtigos(): array
-{
-
-    $nomeFicheiro = SERVER_ROOT . '/dados/artigos.txt';
-    if(file_exists($nomeFicheiro)) {
-        $ficheiroArtigos = fopen($nomeFicheiro, 'r');
-    } else {
-        return [];
-    }
-    
-    $artigos = [];
-    while(($linha = fgets($ficheiroArtigos)) !== false) {
-        $artigo = explode(';', trim($linha));
-        
-        $artigos = adicionarArtigo($artigos, $artigo[1], $artigo[2], $artigo[3], $artigo[4], $artigo[0]);
-    }
-
-    return $artigos;
 }
 ?>
