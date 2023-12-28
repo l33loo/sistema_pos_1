@@ -1,4 +1,5 @@
 <?php
+require_once 'lib_artigos.inc.php';
 
 $errorMsg = '';
 
