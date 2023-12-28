@@ -14,20 +14,6 @@ if (isset($_POST['submit'])) {
     }
 }
 
-//adicionar um artigo
-function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras, int $id = 0): array
-{
-    $artigo = [
-        'codigo' => $id === 0 ? count($artigos) + 1 :$id,
-        'nome' => $nome,
-        'preco' => $preco,
-        'iva' => $iva,
-    ];
-
-    $artigos[$barras] = $artigo;
-    return $artigos;
- }
-
  //guarda um artigo
 function guardarArtigos(array $artigos): bool
 {

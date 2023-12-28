@@ -1,7 +1,6 @@
 <?php
 require_once './config/config.php';
 require_once SERVER_ROOT . '/app/inc/session.inc.php';
-require_once SERVER_ROOT . '/app/inc/artigos.inc.php';
 require_once SERVER_ROOT . '/app/inc/contas.inc.php';
 require_once SERVER_ROOT . '/app/inc/venda.inc.php';
 require_once SERVER_ROOT . '/html/components/head.inc.php';
