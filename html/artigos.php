@@ -22,25 +22,70 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
             <div class="accordion-body">
                 <form action="" method="post">
-                    Nome do artigo: <input class="form-control form-control-lg" type="text" name="nome" maxlength="12"><br>
-                    Preço Unitário: <input  class="form-control form-control-lg" type="text" name="preco" required><br>
-                    <label for="iva"> Escolha a taxa de IVA</label>
-                    <select name="iva" id="iva">
-                        <option value="0">0</option>
-                        <option value="4">4</option>
-                        <option value="9">9</option>
-                        <option value="16">16</option>
-                    </select> </br> </br>
-                    Código de barras <input class="form-control form-control-lg" type="text" name="barras" maxlength="13" minlength="13" required>
-                    <br>
-                    <button type="submit" class="btn btn-primary" name="submit">Registar Artigo</button>
+                    <div class="row py-2">
+                        <div class="col">
+                            <label for="nome" class="form-label">
+                                Nome do artigo:
+                            </label>
+                            <input class="form-control" type="text" name="nome" id="nome" required>
+                        </div>
+                        <div class="col">
+                            <label for="preco" class="form-label">
+                                Preço Unitário:
+                            </label>
+                            <input  class="form-control" type="text" name="preco" id="preco" required>
+                        </div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col">
+                            <label class="form-label" for="iva">
+                                Escolha a taxa de IVA:
+                            </label>
+                            <select class="form-control" name="iva" id="iva">
+                                <option value="0">0</option>
+                                <option value="4">4</option>
+                                <option value="9">9</option>
+                                <option value="16">16</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label for="barras" class="form-label">
+                                Código de barras:
+                            </label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="barras"
+                                inputmode="numeric"
+                                pattern="\d{13}"
+                                title="O código de barras deve ter 13 dígitos"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                     <div class="row py-2">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" name="submit">
+                                Registar Artigo
+                            </button>
+                        </div>
+                     </div>
+
                     <enctype="multipart/form-data"></enctype>
                     <?php if (!empty($msgSucesso)) { ?>
-                        <p class="alert alert-success my-3"><?php echo $msgSucesso; ?></p>
+                        <div class="row py-3">
+                            <div class="col">
+                                <p class="alert alert-success"><?php echo $msgSucesso; ?></p>
+                            </div>
+                        </div>
                     <?php } ?>
                 </form>
             </div>
         </div>
+
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
