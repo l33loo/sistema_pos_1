@@ -11,7 +11,7 @@ echo getHeader($pageTitle);
 include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
-<h1><?php echo $pageTitle; ?></h1>
+<h1 class="py-3"><?php echo $pageTitle; ?></h1>
 <div class="accordion" id="accordion">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -116,10 +116,10 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                         <tbody>
                             <?php foreach ($artigos as $barras => $artigo) { ?>
                                 <tr>
-                                    <td><?php echo $artigo['codigo'];?>
-                                    <td><?php echo $artigo['nome'];?></td>
-                                    <td><?php echo $artigo['preco'] . ' €';?></td>
-                                    <td><?php echo $artigo['iva'];?></td>
+                                    <td><?php echo $artigo['codigo']; ?>
+                                    <td><?php echo $artigo['nome']; ?></td>
+                                    <td><?php echo $artigo['preco'] . ' €'; ?></td>
+                                    <td><?php echo $artigo['iva']; ?></td>
                                     <td><?php echo $barras;?></td>
                                 </tr>
                             <?php } ?>

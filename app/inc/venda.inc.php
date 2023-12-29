@@ -1,5 +1,6 @@
 <?php
 require_once 'lib_artigos.inc.php';
+require_once 'lib_contas.inc.php';
 
 $errorMsg = '';
 

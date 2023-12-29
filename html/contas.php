@@ -1,23 +1,26 @@
 <?php
 require_once '../config/config.php';
+require_once SERVER_ROOT . '/app/inc/contas.inc.php';
 require_once SERVER_ROOT . '/html/components/head.inc.php';
 
-$pageTitle = 'Criação de Conta';
+$pageTitle = 'Contas';
 
 // HTML
 echo getHeader($pageTitle);
 include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
-        <div class="row mt-3">
-            <div class="col">
-                <h1><?php echo $pageTitle ?></h1>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col">
-                <form action="<?php echo APP_ROOT . '/app/criar_conta.php' ?>" method="post" >
+<h1 class="py-3"><?php echo $pageTitle ?></h1>
+<div class="accordion" id="accordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Adicionar Conta
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+            <div class="accordion-body">
+                <form action="" method="post" >
                     <div class="row py-2">
                         <div class="col">
                             <label class="form-label" for="nome">Nome do Cliente</label>
@@ -142,5 +145,45 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Lista de Contas
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Código de Cliente</th>
+                            <th>Nome de Cliente</th>
+                            <th>NIF</th>
+                            <th>Morada</th>
+                            <th>Código Postal</th>
+                            <th>Localidade</th>
+                            <th>Desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($contas as $nif => $conta) { ?>
+                            <tr>
+                                <td><?php echo $conta['codigo']; ?>
+                                <td><?php echo $conta['nomeCliente']; ?></td>
+                                <td><?php echo $nif; ?></td>
+                                <td><?php echo $conta['morada']; ?></td>
+                                <td><?php echo $conta['codigoPostal'];?></td>
+                                <td><?php echo $conta['localidade'];?></td>
+                                <td><?php echo $conta['desconto'];?></td>
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>
