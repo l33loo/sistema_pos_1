@@ -12,7 +12,7 @@
                         <a class="nav-link" href=<?php echo APP_ROOT . '/html/artigos.php'?>>Artigos</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href=<?php echo APP_ROOT . '/html/register.php'?>>Criar Conta</a>
+                        <a class="nav-link" href=<?php echo APP_ROOT . '/html/contas.php'?>>Contas</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="btn btn-secondary" href=<?php echo APP_ROOT . '/app/logout.php'?>>Logout</a>

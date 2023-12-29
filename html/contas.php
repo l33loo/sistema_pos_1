@@ -1,8 +1,9 @@
 <?php
 require_once '../config/config.php';
+require_once SERVER_ROOT . '/app/inc/contas.inc.php';
 require_once SERVER_ROOT . '/html/components/head.inc.php';
 
-$pageTitle = 'Criação de Conta';
+$pageTitle = 'Contas';
 
 // HTML
 echo getHeader($pageTitle);
@@ -17,7 +18,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         
         <div class="row">
             <div class="col">
-                <form action="<?php echo APP_ROOT . '/app/criar_conta.php' ?>" method="post" >
+                <form action="" method="post" >
                     <div class="row py-2">
                         <div class="col">
                             <label class="form-label" for="nome">Nome do Cliente</label>
