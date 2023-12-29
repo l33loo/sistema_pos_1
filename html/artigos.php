@@ -28,12 +28,18 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 Nome do artigo:
                             </label>
                             <input class="form-control" type="text" name="nome" id="nome" required>
+                            <?php if (isset($erros['nomeArtigo'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['nomeArtigo']; ?></div>
+                            <?php } ?>
                         </div>
                         <div class="col">
                             <label for="preco" class="form-label">
                                 Preço Unitário:
                             </label>
-                            <input  class="form-control" type="text" name="preco" id="preco" required>
+                            <input  class="form-control" type="text" name="preco" id="preco">
+                            <?php if (isset($erros['preco'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['preco']; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -42,7 +48,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             <label class="form-label" for="iva">
                                 Escolha a taxa de IVA:
                             </label>
-                            <select class="form-control" name="iva" id="iva">
+                            <select class="form-control" name="iva" id="iva" required>
                                 <option value="0">0</option>
                                 <option value="4">4</option>
                                 <option value="9">9</option>
@@ -59,10 +65,13 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 type="text"
                                 name="barras"
                                 inputmode="numeric"
-                                pattern="\d{13}"
-                                title="O código de barras deve ter 13 dígitos"
+                                pattern="\d{12}"
+                                title="O código de barras deve ter 12 dígitos"
                                 required
                             >
+                            <?php if (isset($erros['barras'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['barras']; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
