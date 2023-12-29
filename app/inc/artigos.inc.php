@@ -4,6 +4,7 @@
 require_once 'lib_artigos.inc.php';
 
 $erros = [];
+$artigos = lerArtigos();
 
 if (isset($_POST['submit'])) {
     // Validar os campos do formulário
@@ -27,7 +28,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (count($erros) === 0) {
-        $artigos = adicionarArtigo(lerArtigos(), $_POST['nome'], $_POST['preco'], $iva, $_POST['barras']);
+        $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $_POST['barras']);
         $guardado = guardarArtigos($artigos);
 
         if ($guardado) {
