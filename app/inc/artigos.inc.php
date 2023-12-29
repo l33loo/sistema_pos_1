@@ -28,12 +28,18 @@ if (isset($_POST['submit'])) {
     }
 
     if (count($erros) === 0) {
-        $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $_POST['barras']);
+        $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $_POST['barras'] . ean13CheckDigit($_POST['barras']));
         $guardado = guardarArtigos($artigos);
 
         if ($guardado) {
             $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
         }
+    }
+
+    if (empty(trim($_POST['barras']))) {
+        $erros['barras'] = 'Deve preencher o campo do Código de barras';
+    } elseif (!is_numeric(trim($_POST['barras'])) || strlen(trim($_POST['barras'])) !== 12) {
+        $erros['barras'] = 'O Código de barras deve ter 12 dígitos.';
     }
 }
 
@@ -55,4 +61,19 @@ function guardarArtigos(array $artigos): bool
     fclose($ficheiro);
     return true;
 }
-?>
+
+function ean13CheckDigit(string $digits): string
+{
+    // 1. Add the values of the digits in the even-numbered positions: 2, 4, 6, etc.
+    $even_sum = $digits[1] + $digits[3] + $digits[5] + $digits[7] + $digits[9] + $digits[11];
+    // 2. Multiply this result by 3.
+    $even_sum_three = $even_sum * 3;
+    // 3. Add the values of the digits in the odd-numbered positions: 1, 3, 5, etc.
+    $odd_sum = $digits[0] + $digits[2] + $digits[4] + $digits[6] + $digits[8] + $digits[10];
+    // 4. Sum the results of steps 2 and 3.
+    $total_sum = $even_sum_three + $odd_sum;
+    // 5. The check character is the smallest number which, when added to the result in step 4,
+    $next_ten = (ceil($total_sum / 10)) * 10;
+    $check_digit = $next_ten - $total_sum;
+    return $check_digit;
+}

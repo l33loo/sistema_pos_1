@@ -65,10 +65,13 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 type="text"
                                 name="barras"
                                 inputmode="numeric"
-                                pattern="\d{13}"
-                                title="O código de barras deve ter 13 dígitos"
+                                pattern="\d{12}"
+                                title="O código de barras deve ter 12 dígitos"
                                 required
                             >
+                            <?php if (isset($erros['barras'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['barras']; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
