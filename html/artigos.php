@@ -11,7 +11,7 @@ echo getHeader($pageTitle);
 include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
-<h1><?php echo $pageTitle; ?></h1>
+<h1 class="py-3"><?php echo $pageTitle; ?></h1>
 <div class="accordion" id="accordion">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
