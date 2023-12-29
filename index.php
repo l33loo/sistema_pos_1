@@ -12,14 +12,14 @@ echo getHeader($pageTitle);
 include(SERVER_ROOT . '/html/components/body_start.inc.php');
 ?>
 
-<h1><?php echo $pageTitle; ?></h1>
+<h1 class="py-3"><?php echo $pageTitle; ?></h1>
 <div class="row">
     <div class="col-12 col-lg-5">
         <form method="post" action="">
-            <div class="row">
+            <div class="row py-1">
                 <div class="col">
                     <div class="form-group">
-                        <label for="barras">Código de Barras</label>
+                        <label class="w-100 fw-bold text-center" for="barras">Código de Barras</label>
                         <input
                             type="text"
                             class="form-control"
@@ -34,7 +34,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="quantidade">Quantidade</label>
+                        <label class="fw-bold text-center w-100" for="quantidade">Quantidade</label>
                         <input
                             type="number"
                             class="form-control"
@@ -45,7 +45,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row py-1">
                 <div class="col">
                     <div class="form-group">
                         <label for="contribuente">Cod Cliente</label>
@@ -74,7 +74,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                 </div>
             </div>
             <?php if (!empty($errorMsg)) { ?>
-                <div class="row">
+                <div class="row py-1">
                     <div class="col">
                         <div class="alert alert-danger">
                             <?php echo $errorMsg ?>
@@ -88,8 +88,8 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         <?php if (!empty($_POST['submit'])) {
             $conta = lerConta($_POST['contribuente']);
             if (count($conta) > 0) { ?>
-                <div>
-                    <div>
+                <div class="border-bottom border-secondary pb-2">
+                    <div class="fw-bold">
                         <?php echo $conta['nomeCliente']; ?>
                     </div>
                     <?php if (!empty($conta['morada'])) { ?>
@@ -120,20 +120,31 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($_POST['submit'])) {
-                foreach (vendasDaConta($_POST['contribuente']) as $venda) { ?>
-                    <tr>
-                        <th scope="row"><?php echo $venda['codigo']; ?></th>
-                        <td><?php echo $venda["nome"]; ?></td>
-                        <td><?php echo $venda["quantidade"]; ?></td>
-                        <td><?php echo $venda["iva"]; ?></td>
-                        <td><?php echo $venda["precoUni"]; ?></td>
-                        <td><?php echo $venda["quantidade"]*(1+$venda["iva"]/100)*$venda["precoUni"]; ?></td>
-                    </tr>
+                <?php $total = 0;
+                if (!empty($_POST['submit'])) {
+                    foreach (vendasDaConta($_POST['contribuente']) as $venda) {
+                        $totalArtigo = $venda["quantidade"]*(1+$venda["iva"]/100)*$venda["precoUni"];
+                        $total += $totalArtigo; ?>
+                        <tr>
+                            <th scope="row"><?php echo $venda['codigo']; ?></th>
+                            <td><?php echo $venda["nome"]; ?></td>
+                            <td><?php echo $venda["quantidade"]; ?></td>
+                            <td><?php echo $venda["iva"] . '%'; ?></td>
+                            <td><?php echo number_format($venda["precoUni"], 2, ',', ' ') . '€'; ?></td>
+                            <td><?php echo number_format($totalArtigo, 2, ',', ' ') . '€'; ?></td>
+                        </tr>
                     <?php }
                 } ?>
             </tbody>
         </table>
+        <?php if ($total > 0) { ?>
+            <div>
+                <span class="fw-bold">Total:</span> <?php echo number_format($total, 2, ',', ' ') . '€'; ?>
+            </div>
+            <div>
+                <span class="fw-bold">Total C/ Desconto:</span> <?php echo number_format($total*(1-$conta['desconto']), 2, ',', ' ') . '€'; ?>
+            </div>
+        <?php } ?>
     </div>
 </div>
 
