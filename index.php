@@ -88,7 +88,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         <?php if (!empty($_POST['submit'])) {
             $conta = lerConta($_POST['contribuente']);
             if (count($conta) > 0) { ?>
-                <div>
+                <div class="border-bottom border-secondary pb-2">
                     <div class="fw-bold">
                         <?php echo $conta['nomeCliente']; ?>
                     </div>
