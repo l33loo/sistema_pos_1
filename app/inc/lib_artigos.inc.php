@@ -22,7 +22,7 @@ function lerArtigos(): array
 }
 
 //adicionar um artigo
-function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras, int $id): array
+function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras): array
 {
     $artigo = [
         'codigo' => count($artigos) + 1,
