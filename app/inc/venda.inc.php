@@ -2,31 +2,40 @@
 require_once 'lib_artigos.inc.php';
 require_once 'lib_contas.inc.php';
 
-$errorMsg = '';
+$erros = [];
 
 if (!empty($_POST)) {
-    if (empty($_POST['barras'])) {
-        $errorMsg = 'barras wrong';
+    if (empty($_POST['barras']) || !preg_match('/^[0-9]{13}$/', $_POST['barras'])) {
+        $erros['barras'] = 'O campo do código de barras dever ter 13 dígitos.';
     }
     
-    if (empty($_POST['quantidade'])) {
-        $errorMsg = 'quantidade wrong';
+    if (empty($_POST['quantidade']) || !is_numeric($_POST['quantidade'])) {
+        $erros['quantidade'] = 'Deve especificar uma quantidade.';
     }
 
-    if (!empty($_POST['barras']) && !empty($_POST['quantidade'])) {
+    if (!empty($_POST['contribuente']) && !preg_match('/^[0-9]{9}$/', $_POST['contribuente'])) {
+        $erros['contribuente'] = 'O contribuente deve ter 9 dígitos.';
+    } else {
+        $conta = lerConta($_POST['contribuente']);
+        if (count($conta) === 0) {
+            $erros['contribuente'] = 'O cliente "' . $_POST['contribuente'] . '" não existe.';
+        }
+    }
+    
+    if (count($erros) === 0) {
         // validate types
         $artigos = lerArtigos();
-        $conta = lerConta($_POST['contribuente']);
 
         if (!array_key_exists($_POST['barras'], $artigos)) {
-            $errorMsg = 'barras does not exist';
+            $erros['barras'] = 'O artigo "' . $_POST['barras'] . '" não existe.';
         } else {
             $artigo = $artigos[$_POST['barras']];
             $vendas = adicionarVenda(lerVendas(), $artigo['codigo'], $artigo['nome'], $_POST['quantidade'], $artigo['preco'], $artigo['iva'], $conta['codigo']);
-            $guardado = guardarVendas($vendas);
 
-            if (!$guardado) {
-                $errorMsg = 'error saving';
+            if (guardarVendas($vendas)) {
+                $successMsg = 'Venda realizada com successo.';
+            } else {$errorMsg = 'error saving';
+                $erros['guardar'] = 'Erro com a venda.';
             }
         }
     }

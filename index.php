@@ -29,6 +29,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             title="O código de barras deve ter 13 dígitos"
                             required
                         >
+                        <?php if (!empty($erros['barras'])) { ?>
+                            <div class="alert alert-danger py-1 my-1"><?php echo $erros['barras']; ?></div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col">
@@ -41,6 +44,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             name="quantidade"
                             required
                         >
+                        <?php if (!empty($erros['quantidade'])) { ?>
+                            <div class="alert alert-danger py-1 my-1"><?php echo $erros['quantidade']; ?></div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -64,6 +70,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 value="<?php echo $_POST['contribuente']; ?>"
                             <?php } ?>
                         >
+                        <?php if (!empty($erros['contribuente'])) { ?>
+                            <div class="alert alert-danger py-1 my-1"><?php echo $erros['contribuente']; ?></div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -72,12 +81,16 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <input type="submit" name="submit" value="Adicionar">
                 </div>
             </div>
-            <?php if (!empty($errorMsg)) { ?>
-                <div class="row py-1">
+            <?php if (!empty($successMsg)) { ?>
+                <div class="row py-3">
                     <div class="col">
-                        <div class="alert alert-danger">
-                            <?php echo $errorMsg ?>
-                        </div>
+                        <div class="alert alert-success"><?php echo $successMsg; ?></div>
+                    </div>
+                </div>
+            <?php } elseif (!empty($erros['guardar'])) { ?>
+                <div class="row py-3">
+                    <div class="col">
+                        <div class="alert alert-danger"><?php echo $erros['guardar']; ?></div>
                     </div>
                 </div>
             <?php } ?>
@@ -85,7 +98,6 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
     </div>
     <div class="col-12 col-lg-7">
         <?php if (!empty($_POST['submit'])) {
-            $conta = lerConta($_POST['contribuente']);
             if (count($conta) > 0) { ?>
                 <div class="border-bottom border-secondary pb-2">
                     <div class="fw-bold">
