@@ -12,15 +12,18 @@ $pageTitle = 'Login';
 echo getHeader($pageTitle);
 ?>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href=<?php echo APP_ROOT . '/'?>>PoS</a>
-    </div>
-</nav>
+<div class="container sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=<?php echo APP_ROOT . '/'?>>PoS</a>
+        </div>
+    </nav>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1><?php echo $pageTitle; ?></h1>
+            <h1 class="py-3"><?php echo $pageTitle; ?></h1>
             <?php if (!empty($mensagemErro)) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?php echo $mensagemErro ?>
