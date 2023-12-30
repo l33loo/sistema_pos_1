@@ -90,7 +90,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 <div class="alert alert-success"><?php echo $msgSucesso; ?></div>
                             </div>
                         </div>
-                    <?php } elseif (!empty($erros['guardado'])) { ?>
+                    <?php } elseif (!empty($erros['guardar'])) { ?>
                         <div class="row py-3">
                             <div class="col">
                                 <div class="alert alert-danger"><?php echo $erros['guardado']; ?></div>
