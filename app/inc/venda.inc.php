@@ -2,6 +2,8 @@
 require_once 'lib_artigos.inc.php';
 require_once 'lib_contas.inc.php';
 
+// Re-inicializar mensagems de sucesso e erro
+$successMsg = '';
 $erros = [];
 
 if (!empty($_POST)) {

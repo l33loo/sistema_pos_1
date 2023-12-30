@@ -54,6 +54,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 <option value="9">9</option>
                                 <option value="16">16</option>
                             </select>
+                            <?php if (!empty($erros['iva'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['iva']; ?></div>
+                            <?php } ?>
                         </div>
 
                         <div class="col">
@@ -84,7 +87,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                      </div>
 
                     <enctype="multipart/form-data"></enctype>
-                    <?php if (!empty($msgSucesso)) { ?>
+                    <?php if (!empty($msgSucesso) && count($erros) === 0) { ?>
                         <div class="row py-3">
                             <div class="col">
                                 <div class="alert alert-success"><?php echo $msgSucesso; ?></div>

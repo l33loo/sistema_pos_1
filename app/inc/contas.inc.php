@@ -3,7 +3,10 @@
 
 require_once 'lib_contas.inc.php';
 
+// Re-inicializar mensagems de sucesso e erro
+$successMsg = '';
 $erros = [];
+
 $contas = lerContas();
 
 // Verifica se o formulário foi enviado

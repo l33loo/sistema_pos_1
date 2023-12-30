@@ -164,7 +164,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                         </div>
                     </div>
 
-                    <?php if (!empty($successMsg)) { ?>
+                    <?php if (!empty($successMsg) && count($erros) === 0) { ?>
                         <div class="row py-3">
                             <div class="col">
                                 <div class="alert alert-success"><?php echo $successMsg; ?></div>

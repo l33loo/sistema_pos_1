@@ -19,6 +19,7 @@ if (!empty($_POST['login'])) {
     if (!empty($_SESSION['autenticado']) && $_SESSION['autenticado'] === true) {
         header('Location: ' . APP_ROOT . '/');
     } else {
+        // TODO: fix Undefined variable $password in /home/lila/Documents/azores/uac/daw/programacao_web_i/projecto1/app/inc/login.inc.php on line 22
         if (!empty($_COOKIE['sessioncookie']) && $_COOKIE['sessioncookie'] === password_hash($password, PASSWORD_BCRYPT)) {
             $_SESSION['autenticado'] = true;
             setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
