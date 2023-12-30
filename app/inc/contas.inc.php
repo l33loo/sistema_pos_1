@@ -3,65 +3,66 @@
 
 require_once 'lib_contas.inc.php';
 
+$erros = [];
 $contas = lerContas();
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // Verifica se todos os campos necessários estão presentes e não estão vazios
-    if (
-        !empty($_POST['nome']) &&
-        !empty($_POST['nif']) &&
-        !empty($_POST['porta']) &&
-        !empty($_POST['rua']) &&
-        !empty($_POST['cp1']) &&
-        !empty($_POST['cp2']) &&
-        !empty($_POST['localidade']) &&
-        isset($_POST['desconto']) && // Certifica-se de que o desconto está definido
-        is_numeric($_POST['desconto']) && // Certifica-se de que o desconto é um número
-        $_POST['desconto'] >= 0 && $_POST['desconto'] <= 15 // Verifica se o desconto está no intervalo de 0 a 15
+    if (empty($_POST['nome'])) {
+        $erros['nomeCliente'] = 'Deve preecher o campo do Nome do cliente.';
+    }
+
+    if (empty($_POST['nif']) || !preg_match('/^[0-9]{9}$/', $_POST['nif'])) {
+        $erros['nif'] = 'O NIF dever ter 9 dígitos.';
+    }
+
+    if (empty($_POST['porta'])) {
+        $erros['porta'] = 'Deve preencher o campo do número de porta.';
+    }
+
+    if (empty($_POST['rua'])) {
+        $erros['rua'] = 'Deve preencher o campo da rua.';
+    }
+
+    if (empty($_POST['cp1'])
+        || empty($_POST['cp2'])
+        || !preg_match('/^[0-9]{4}$/', $_POST['cp1'])
+        || !preg_match('/^[0-9]{3}$/', $_POST['cp2'])
     ) {
-        
-        // Verifica se o desconto está no intervalo correto
-        if ($_POST['desconto'] >= 0 && $_POST['desconto'] <= 15) {
-        
-            // Verifica se $cp1 e $cp2 têm o número correto de dígitos
-            if (strlen($_POST['cp1']) === 4 && strlen($_POST['cp2']) === 3) {
+        $erros['cp'] = 'O código postal deve ter 4 dígitos no primeiro campo, e 3 dígitos no segundo campo.';
+    }
 
-                // Verifica se $nif tem o número correto de dígitos
-                if (strlen($_POST['nif']) === 9) {
+    if (empty($_POST['localidade'])) {
+        $erros['localidade'] = 'Deve preencher o campo da localidade.';
+    }
 
-                    // Dados do cliente com o número de ordem
-                    $cliente = [
-                        'numero_ordem' => count($contas) + 1, // Inteiro sequencial único a cada cliente
-                        'nome' => $_POST['nome'], 
-                        'nif' => $_POST['nif'], // Cadeira de caracteres de dimensão 9 contendo apenas dígitos
-                        // Cadeira de caracteres contendo a rua e o número de porta separados por vírgula (,)
-                        'morada' => $_POST['rua'] . ', ' . $_POST['porta'],
-                        'cp' => $_POST['cp1'] . '-' . $_POST['cp2'],  // Formato: XXXX-YYY
-                        'localidade' => $_POST['localidade'],
-                        'desconto' => $_POST['desconto'],  // Entre 0-15
-                    ];
+    if (!isset($_POST['desconto']) // Certifica-se de que o desconto está definido
+        || is_numeric($_POST['desconto']) // Certifica-se de que o desconto é um número
+        || $_POST['desconto'] <= 0
+        || $_POST['desconto'] >= 15 // Verifica se o desconto está no intervalo de 0 a 15
+    ) { 
+        $erros['desconto'] = 'O desconto deve ser entre 0 e 15.';
+    }
 
-                    // Chama a função para guardar o cliente
-                    if (guardarConta($cliente)) {
-                        echo '<p class="alert alert-success">Conta Criada com Sucesso</p>';
-                    } else {
-                        echo '<p class="alert alert-danger">Erro a criar a conta</p>';
-                    }
+    if (count($erros) === 0) {
+        // Dados do cliente com o número de ordem
+        $cliente = [
+            'numero_ordem' => count($contas) + 1, // Inteiro sequencial único a cada cliente
+            'nome' => $_POST['nome'], 
+            'nif' => $_POST['nif'], // Cadeira de caracteres de dimensão 9 contendo apenas dígitos
+            // Cadeira de caracteres contendo a rua e o número de porta separados por vírgula (,)
+            'morada' => $_POST['rua'] . ', ' . $_POST['porta'],
+            'cp' => $_POST['cp1'] . '-' . $_POST['cp2'],  // Formato: XXXX-YYY
+            'localidade' => $_POST['localidade'],
+            'desconto' => $_POST['desconto'],  // Entre 0-15
+        ];
 
-                } else {
-                    echo '<p class="alert alert-danger">Por favor, preencha todos os campos do formulário corretamente</p>';
-                }
-
-                } else {
-                    echo '<p class="alert alert-danger">Por favor, insira 9 dígitos para o NIF</p>';
-                }
-            } else {
-                echo '<p class="alert alert-danger">Por favor, insira 4 dígitos para a primeira parte e 3 dígitos para a segunda parte do Código Postal</p>';
-            }
-    } else {
-        echo '<p class="alert alert-danger">O desconto deve estar entre o 0 e o 15</p>';
+        // Chama a função para guardar o cliente
+        if (guardarConta($cliente)) {
+            $successMsg = 'Conta do Cliente ' . $_POST['nif'] . ' criada com Sucesso';
+        } else {
+            $erros['guardar'] = 'Erro a criar a conta ' . $_POST['nif'];
+        }
     }
 }
 
