@@ -3,7 +3,10 @@
 
 require_once 'lib_artigos.inc.php';
 
+// Re-inicializar mensagems de sucesso e erro
+$msgSucesso = '';
 $erros = [];
+
 $artigos = lerArtigos();
 
 if (isset($_POST['submit'])) {
@@ -20,21 +23,17 @@ if (isset($_POST['submit'])) {
         $erros['preco'] = 'O preço deve ser um valor (decimal ou não) entre 0 e 9999999.';
     }
 
-    $iva = $_POST['iva'];
-    if (empty(trim($_POST['iva']))) {
+    if (!isset($_POST['iva'])) {
         $iva = 0;
-    } elseif (trim($_POST['iva']) !== 0 || trim($_POST['iva']) !== 4 || trim($_POST['iva']) !== 9 || trim($_POST['iva']) !== 16) {
+    } elseif (
+        trim($_POST['iva']) != 0
+        && trim($_POST['iva']) != 4
+        && trim($_POST['iva']) != 9
+        && trim($_POST['iva']) != 16
+    ) {
         $erros['iva'] = 'O valor do IVA deve ser 0, 4, 9, ou 16.';
-    }
-
-    if (count($erros) === 0) {
-        $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $_POST['barras'] . ean13CheckDigit($_POST['barras']));
-
-        if (guardarArtigos($artigos)) {
-            $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
-        } else {
-            $erros['guardar'] = 'Erro a criar a artigo "' . $_POST['nome'];
-        }
+    } else {
+        $iva = trim($_POST['iva']);
     }
 
     if (empty(trim($_POST['barras']))) {
@@ -42,6 +41,22 @@ if (isset($_POST['submit'])) {
     } elseif (!is_numeric(trim($_POST['barras'])) || strlen(trim($_POST['barras'])) !== 12) {
         $erros['barras'] = 'O Código de barras deve ter 12 dígitos.';
     }
+
+    if (count($erros) === 0) {
+        $barras = trim($_POST['barras']) . ean13CheckDigit($_POST['barras']);
+
+        if (array_key_exists($barras, $artigos)) {
+            $erros['barras'] = 'O Código de barras "' . $_POST['barras'] . '" já existe.';
+        }
+
+        $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $barras);
+
+        if (guardarArtigos($artigos)) {
+            $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
+        } else {
+            $erros['guardar'] = 'Erro a criar a artigo "' . $_POST['nome'];
+        }
+    }    
 }
 
  //guarda um artigo
