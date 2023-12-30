@@ -173,7 +173,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <?php } elseif (!empty($erros['guardar'])) { ?>
                         <div class="row py-3">
                             <div class="col">
-                                <div class="alert alert-danger"><?php echo $erros['guardado']; ?></div>
+                                <div class="alert alert-danger"><?php echo $erros['guardar']; ?></div>
                             </div>
                         </div>
                     <?php } ?>
