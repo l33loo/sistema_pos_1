@@ -31,6 +31,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 id="nome"
                                 required
                             >
+                            <?php if (!empty($erros['nomeCliente'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['nomeCliente']; ?></div>
+                            <?php } ?>
                         </div>
                         <div class="col">
                             <label class="form-label" for="nif">NIF</label>
@@ -44,6 +47,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 title="O número de contribuente deve ter 9 dígitos"
                                 required
                             >
+                            <?php if (!empty($erros['nif'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['nif']; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -61,6 +67,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                     required
                                 >
                                 <label class="form-text text-muted" for="porta">Número de Porta</label>
+                                <?php if (!empty($erros['porta'])) { ?>
+                                    <div class="alert alert-danger py-1 my-1"><?php echo $erros['porta']; ?></div>
+                                <?php } ?>
                             </div>
                             <div class="col-10">
                                 <input
@@ -71,6 +80,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                     required
                                 >
                                 <label class="form-text text-muted" for="rua">Rua</label>
+                                <?php if (!empty($erros['rua'])) { ?>
+                                    <div class="alert alert-danger py-1 my-1"><?php echo $erros['rua']; ?></div>
+                                <?php } ?>
                             </div>
                         </div>
                     </fieldset>
@@ -107,6 +119,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                             required
                                         >
                                     </div>
+                                    <?php if (!empty($erros['cp'])) { ?>
+                                        <div class="alert alert-danger py-1 my-1"><?php echo $erros['cp']; ?></div>
+                                    <?php } ?>
                                 </div>
                             </fieldset>
                         </div>
@@ -121,6 +136,9 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 id="localidade"
                                 required
                             >
+                            <?php if (!empty($erros['localidade'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['localidade']; ?></div>
+                            <?php } ?>
                         </div>
                         <div class="col">
                             <label for="desconto" class="form-label">Desconto</label>
@@ -132,7 +150,11 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 min="0"
                                 max="15"
                                 value="0"
+                                required
                             >
+                            <?php if (!empty($erros['desconto'])) { ?>
+                                <div class="alert alert-danger py-1 my-1"><?php echo $erros['desconto']; ?></div>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -141,6 +163,20 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             <input type="submit" class="btn btn-primary" value="Criar Conta">
                         </div>
                     </div>
+
+                    <?php if (!empty($successMsg)) { ?>
+                        <div class="row py-3">
+                            <div class="col">
+                                <div class="alert alert-success"><?php echo $successMsg; ?></div>
+                            </div>
+                        </div>
+                    <?php } elseif (!empty($erros['guardar'])) { ?>
+                        <div class="row py-3">
+                            <div class="col">
+                                <div class="alert alert-danger"><?php echo $erros['guardado']; ?></div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </form>
             </div>
         </div>

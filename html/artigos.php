@@ -28,7 +28,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 Nome do artigo:
                             </label>
                             <input class="form-control" type="text" name="nome" id="nome" required>
-                            <?php if (isset($erros['nomeArtigo'])) { ?>
+                            <?php if (!empty($erros['nomeArtigo'])) { ?>
                                 <div class="alert alert-danger py-1 my-1"><?php echo $erros['nomeArtigo']; ?></div>
                             <?php } ?>
                         </div>
@@ -37,7 +37,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 Preço Unitário:
                             </label>
                             <input  class="form-control" type="text" name="preco" id="preco">
-                            <?php if (isset($erros['preco'])) { ?>
+                            <?php if (!empty($erros['preco'])) { ?>
                                 <div class="alert alert-danger py-1 my-1"><?php echo $erros['preco']; ?></div>
                             <?php } ?>
                         </div>
@@ -69,7 +69,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 title="O código de barras deve ter 12 dígitos"
                                 required
                             >
-                            <?php if (isset($erros['barras'])) { ?>
+                            <?php if (!empty($erros['barras'])) { ?>
                                 <div class="alert alert-danger py-1 my-1"><?php echo $erros['barras']; ?></div>
                             <?php } ?>
                         </div>
@@ -87,7 +87,13 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <?php if (!empty($msgSucesso)) { ?>
                         <div class="row py-3">
                             <div class="col">
-                                <p class="alert alert-success"><?php echo $msgSucesso; ?></p>
+                                <div class="alert alert-success"><?php echo $msgSucesso; ?></div>
+                            </div>
+                        </div>
+                    <?php } elseif (!empty($erros['guardar'])) { ?>
+                        <div class="row py-3">
+                            <div class="col">
+                                <div class="alert alert-danger"><?php echo $erros['guardado']; ?></div>
                             </div>
                         </div>
                     <?php } ?>

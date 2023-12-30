@@ -29,10 +29,11 @@ if (isset($_POST['submit'])) {
 
     if (count($erros) === 0) {
         $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $_POST['barras'] . ean13CheckDigit($_POST['barras']));
-        $guardado = guardarArtigos($artigos);
 
-        if ($guardado) {
+        if (guardarArtigos($artigos)) {
             $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
+        } else {
+            $erros['guardar'] = 'Erro a criar a artigo "' . $_POST['nome'];
         }
     }
 
