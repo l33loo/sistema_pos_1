@@ -99,28 +99,26 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
         </form>
     </div>
     <div class="col-12 col-lg-7">
-        <?php if (!empty($_POST['submit'])) {
-            if (count($conta) > 0) { ?>
-                <div class="border-bottom border-secondary pb-2">
-                    <div class="fw-bold">
-                        <?php echo $conta['nome']; ?>
-                    </div>
-                    <?php if (!empty($conta['morada'])) { ?>
-                        <div>
-                            <?php echo $conta['morada']; ?>
-                        </div>
-                    <?php }
-                    if (!empty($conta['cp']) || !empty($conta['localidade'])) { ?>
-                        <div>
-                            <?php echo $conta['cp'] . ' - ' . $conta['localidade']; ?>
-                        </div>
-                    <?php } ?>
-                    <div>
-                        <?php echo 'Contribuente: ' . $conta['contribuente']; ?>
-                    </div>
+        <?php if (!empty($_POST['submit']) && count($erros) === 0 && count($conta) > 0) { ?>
+            <div class="border-bottom border-secondary pb-2">
+                <div class="fw-bold">
+                    <?php echo $conta['nome']; ?>
                 </div>
-            <?php }
-        } ?>
+                <?php if (!empty($conta['morada'])) { ?>
+                    <div>
+                        <?php echo $conta['morada']; ?>
+                    </div>
+                <?php }
+                if (!empty($conta['cp']) || !empty($conta['localidade'])) { ?>
+                    <div>
+                        <?php echo $conta['cp'] . ' - ' . $conta['localidade']; ?>
+                    </div>
+                <?php } ?>
+                <div>
+                    <?php echo 'Contribuente: ' . $conta['contribuente']; ?>
+                </div>
+            </div>
+        <?php } ?>
         <table class="table">
             <thead>
                 <tr>
