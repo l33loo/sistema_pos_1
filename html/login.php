@@ -45,4 +45,4 @@ echo getHeader($pageTitle);
                 <input class="btn btn-primary mb-3" type="submit" value="Iniciar Sessão" name="login">
             </form>
 
-<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>
+<?php require_once SERVER_ROOT . '/html/components/body_end.inc.php'; ?>

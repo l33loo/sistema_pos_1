@@ -8,7 +8,7 @@ $pageTitle = 'Vendas';
 
 // HTML
 echo getHeader($pageTitle);
-include(SERVER_ROOT . '/html/components/body_start.inc.php');
+require_once SERVER_ROOT . '/html/components/body_start.inc.php';
 ?>
 
 <h1 class="py-3"><?php echo $pageTitle; ?></h1>
@@ -101,7 +101,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
             if (count($conta) > 0) { ?>
                 <div class="border-bottom border-secondary pb-2">
                     <div class="fw-bold">
-                        <?php echo $conta['nomeCliente']; ?>
+                        <?php echo $conta['nome']; ?>
                     </div>
                     <?php if (!empty($conta['morada'])) { ?>
                         <div>
@@ -110,7 +110,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                     <?php }
                     if (!empty($conta['cp']) || !empty($conta['localidade'])) { ?>
                         <div>
-                            <?php echo $conta['codigoPostal'] . ' - ' . $conta['localidade']; ?>
+                            <?php echo $conta['cp'] . ' - ' . $conta['localidade']; ?>
                         </div>
                     <?php } ?>
                     <div>
@@ -141,8 +141,8 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                             <td><?php echo $venda["nome"]; ?></td>
                             <td><?php echo $venda["quantidade"]; ?></td>
                             <td><?php echo $venda["iva"] . '%'; ?></td>
-                            <td><?php echo number_format($venda["precoUni"], 2, ',', ' ') . '€'; ?></td>
-                            <td><?php echo number_format($totalArtigo, 2, ',', ' ') . '€'; ?></td>
+                            <td><?php echo number_format($venda["precoUni"], 2, ',', ' ') . ' €'; ?></td>
+                            <td><?php echo number_format($totalArtigo, 2, ',', ' ') . ' €'; ?></td>
                         </tr>
                     <?php }
                 } ?>
@@ -150,13 +150,13 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
         </table>
         <?php if ($total > 0) { ?>
             <div>
-                <span class="fw-bold">Total:</span> <?php echo number_format($total, 2, ',', ' ') . '€'; ?>
+                <span class="fw-bold">Total:</span> <?php echo number_format($total, 2, ',', ' ') . ' €'; ?>
             </div>
             <div>
-                <span class="fw-bold">Total C/ Desconto:</span> <?php echo number_format($total*(1-$conta['desconto']), 2, ',', ' ') . '€'; ?>
+                <span class="fw-bold">Total C/ Desconto:</span> <?php echo number_format($total*(1-$conta['desconto']), 2, ',', ' ') . ' €'; ?>
             </div>
         <?php } ?>
     </div>
 </div>
 
-<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>
+<?php require_once SERVER_ROOT . '/html/components/body_end.inc.php'; ?>

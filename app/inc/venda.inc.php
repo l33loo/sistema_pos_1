@@ -7,20 +7,20 @@ $successMsg = '';
 $erros = [];
 
 if (!empty($_POST)) {
-    if (empty($_POST['barras']) || !preg_match('/^[0-9]{13}$/', $_POST['barras'])) {
+    if (empty(trim($_POST['barras'])) || !preg_match('/^[0-9]{13}$/', trim($_POST['barras']))) {
         $erros['barras'] = 'O campo do código de barras dever ter 13 dígitos.';
     }
     
-    if (empty($_POST['quantidade']) || !is_numeric($_POST['quantidade'])) {
+    if (empty(trim($_POST['quantidade'])) || !is_numeric(trim($_POST['quantidade']))) {
         $erros['quantidade'] = 'Deve especificar uma quantidade.';
     }
 
-    if (!empty($_POST['contribuente']) && !preg_match('/^[0-9]{9}$/', $_POST['contribuente'])) {
+    if (!empty(trim($_POST['contribuente'])) && !preg_match('/^[0-9]{9}$/', trim($_POST['contribuente']))) {
         $erros['contribuente'] = 'O contribuente deve ter 9 dígitos.';
     } else {
-        $conta = lerConta($_POST['contribuente']);
+        $conta = lerConta(trim($_POST['contribuente']));
         if (count($conta) === 0) {
-            $erros['contribuente'] = 'O cliente "' . $_POST['contribuente'] . '" não existe.';
+            $erros['contribuente'] = 'O cliente "' . trim($_POST['contribuente']) . '" não existe.';
         }
     }
     
@@ -28,15 +28,15 @@ if (!empty($_POST)) {
         // validate types
         $artigos = lerArtigos();
 
-        if (!array_key_exists($_POST['barras'], $artigos)) {
-            $erros['barras'] = 'O artigo "' . $_POST['barras'] . '" não existe.';
+        if (!array_key_exists(trim($_POST['barras']), $artigos)) {
+            $erros['barras'] = 'O artigo "' . trim($_POST['barras']) . '" não existe.';
         } else {
-            $artigo = $artigos[$_POST['barras']];
-            $vendas = adicionarVenda(lerVendas(), $artigo['codigo'], $artigo['nome'], $_POST['quantidade'], $artigo['preco'], $artigo['iva'], $conta['codigo']);
+            $artigo = $artigos[trim($_POST['barras'])];
+            $vendas = adicionarVenda(lerVendas(), $artigo['codigo'], $artigo['nome'], trim($_POST['quantidade']), $artigo['preco'], $artigo['iva'], $conta['codigo']);
 
             if (guardarVendas($vendas)) {
-                $successMsg = 'Venda realizada com successo.';
-            } else {$errorMsg = 'error saving';
+                $successMsg = 'Artigo adicionado com sucesso.';
+            } else {
                 $erros['guardar'] = 'Erro com a venda.';
             }
         }
@@ -88,12 +88,13 @@ function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $qu
 function guardarVendas(array $listaVendas): bool {
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
     if (!file_exists($caminhoFicheiro)) {
-        // fix error
-        echo 'guardar: file doesnt exist';
         return false;
     }
 
     $ficheiroVendas = fopen($caminhoFicheiro, 'w');
+    if ($ficheiroVendas === false) {
+        return false;
+    }
 
     foreach ($listaVendas as $venda) {
         $bytes = fwrite($ficheiroVendas, implode(';', $venda) . "\n");

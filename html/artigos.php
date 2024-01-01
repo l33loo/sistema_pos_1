@@ -8,7 +8,7 @@ $pageTitle = 'Artigos';
 
 // HTML
 echo getHeader($pageTitle);
-include(SERVER_ROOT . '/html/components/body_start.inc.php');
+require_once SERVER_ROOT . '/html/components/body_start.inc.php';
 ?>
 
 <h1 class="py-3"><?php echo $pageTitle; ?></h1>
@@ -127,7 +127,7 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                                 <tr>
                                     <td><?php echo $artigo['codigo']; ?>
                                     <td><?php echo $artigo['nome']; ?></td>
-                                    <td><?php echo $artigo['preco'] . ' €'; ?></td>
+                                    <td><?php echo number_format((float)$artigo['preco'], 2, ',', ' ') . ' €'; ?></td>
                                     <td><?php echo $artigo['iva']; ?></td>
                                     <td><?php echo $barras;?></td>
                                 </tr>
@@ -141,4 +141,4 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
     </div>
 </div>
 
-<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>
+<?php require_once SERVER_ROOT . '/html/components/body_end.inc.php'; ?>
