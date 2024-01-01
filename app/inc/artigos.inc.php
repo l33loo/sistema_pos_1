@@ -3,7 +3,7 @@
 
 require_once 'lib_artigos.inc.php';
 
-// Re-inicializar mensagems de sucesso e erro
+// Re-inicializar mensagens de sucesso e erro
 $msgSucesso = '';
 $erros = [];
 
@@ -101,3 +101,4 @@ function ean13CheckDigit(string $digits): string
     $check_digit = $next_ten - $total_sum;
     return $check_digit;
 }
+

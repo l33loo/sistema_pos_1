@@ -33,4 +33,5 @@ function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, 
 
     $artigos[$barras] = $artigo;
     return $artigos;
- }
+}
+

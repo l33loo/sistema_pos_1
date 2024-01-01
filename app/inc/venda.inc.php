@@ -2,11 +2,12 @@
 require_once 'lib_artigos.inc.php';
 require_once 'lib_contas.inc.php';
 
-// Re-inicializar mensagems de sucesso e erro
+// Re-inicializar mensagens de sucesso e erro
 $successMsg = '';
 $erros = [];
 
 if (!empty($_POST)) {
+    // Validar os campos do formulário
     if (empty(trim($_POST['barras'])) || !preg_match('/^[0-9]{13}$/', trim($_POST['barras']))) {
         $erros['barras'] = 'O campo do código de barras dever ter 13 dígitos.';
     }
@@ -42,13 +43,12 @@ if (!empty($_POST)) {
     }
 }
 
-function lerVendas(): array {
+function lerVendas(): array
+{
     $listaVendas = [];
 
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
     if (!file_exists($caminhoFicheiro)) {
-        // create file if doesn't exist
-        echo 'ler: file doesnt exist';
         return $listaVendas;
     }
 
@@ -70,7 +70,8 @@ function lerVendas(): array {
     return $listaVendas;
 }
 
-function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente, int $desconto = 0): array {
+function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente, int $desconto = 0): array
+{
     $listaVendas[] = array(
         'codigo' => $codigo,
         'nome' => $nome,
@@ -84,7 +85,8 @@ function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $qu
     return $listaVendas;
 }
 
-function guardarVendas(array $listaVendas): bool {
+function guardarVendas(array $listaVendas): bool
+{
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
     if (!file_exists($caminhoFicheiro)) {
         return false;
@@ -106,7 +108,9 @@ function guardarVendas(array $listaVendas): bool {
     return true;
 }
 
-function vendasDaConta(?string $contribuente): array {
+// Um número de contribuente "null" é igual ao Consumidor Final
+function vendasDaConta(?string $contribuente): array
+{
     $conta = lerConta($contribuente);
     $vendas = lerVendas();
     $vendasDaConta = [];
@@ -117,3 +121,4 @@ function vendasDaConta(?string $contribuente): array {
     }
     return $vendasDaConta;
 }
+

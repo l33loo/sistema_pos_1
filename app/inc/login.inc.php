@@ -30,7 +30,8 @@ if (!empty($_POST['login'])) {
     }
 }
 
-function validarUtilizador(string $email, $pass, array $utilizadores): bool {
+function validarUtilizador(string $email, $pass, array $utilizadores): bool
+{
     if (!array_key_exists($email, $utilizadores)) {
         return false;
     }
@@ -41,7 +42,8 @@ function validarUtilizador(string $email, $pass, array $utilizadores): bool {
     return false;
 }
 
-function lerUtilizadores(): array {
+function lerUtilizadores(): array
+{
     $listaUtilizadores = [];
 
     $caminhoFicheiro = SERVER_ROOT . '/dados/utilizadores.txt';
@@ -58,3 +60,4 @@ function lerUtilizadores(): array {
 
     return $listaUtilizadores;
 }
+

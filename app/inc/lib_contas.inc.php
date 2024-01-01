@@ -1,7 +1,8 @@
 <?php
 // Funções utilizadas em varios ficheiros
 
-function lerContas(): array {
+function lerContas(): array
+{
     $listaContas = [];
 
     $caminhoFicheiro = SERVER_ROOT . "/dados/contas.txt";
@@ -26,13 +27,14 @@ function lerContas(): array {
     return $listaContas;
 }
 
-function lerConta(?string $contribuente): array {
+// Um número de contribuente "null" é igual ao Consumidor Final
+function lerConta(?string $contribuente): array
+{
     $contas = lerContas();
 
     if (!$contribuente) {
         $contribuente_consumidor_final = '999999990';
         if (!array_key_exists($contribuente_consumidor_final, $contas)) {
-            // TODO: error
             return [];
         }
 
@@ -43,7 +45,6 @@ function lerConta(?string $contribuente): array {
     }
     
     if (!array_key_exists($contribuente, $contas)) {
-        // TODO: error
         return [];
     }
 
@@ -52,3 +53,4 @@ function lerConta(?string $contribuente): array {
 
     return $conta;
 }
+

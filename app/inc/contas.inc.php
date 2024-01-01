@@ -11,6 +11,7 @@ $contas = lerContas();
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validar os campos do formulário
     if (empty(trim($_POST['nome']))) {
         $erros['nomeCliente'] = 'Deve preecher o campo do Nome do cliente.';
     }
@@ -70,7 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Função para guardar a conta no arquivo CSV
-function guardarConta(array $conta): bool {
+function guardarConta(array $conta): bool
+{
     $csvFileName = SERVER_ROOT . '/dados/contas.txt';
     if (!file_exists($csvFileName)) {
         return false;
@@ -86,3 +88,4 @@ function guardarConta(array $conta): bool {
     fclose($file);
     return true;
 }
+
