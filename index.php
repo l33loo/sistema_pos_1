@@ -141,7 +141,7 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
                             <td><?php echo $venda["nome"]; ?></td>
                             <td><?php echo $venda["quantidade"]; ?></td>
                             <td><?php echo $venda["iva"] . '%'; ?></td>
-                            <td><?php echo $venda["precoUni"] . ' €'; ?></td>
+                            <td><?php echo number_format($venda["precoUni"], 2, ',', ' ') . ' €'; ?></td>
                             <td><?php echo number_format($totalArtigo, 2, ',', ' ') . ' €'; ?></td>
                         </tr>
                     <?php }

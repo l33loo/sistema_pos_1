@@ -17,8 +17,8 @@ if (isset($_POST['submit'])) {
 
     if (empty(trim($_POST['preco']))) {
         $erros['preco'] = 'Deve preencher o campo do Preço Unitário';
-    } elseif (!is_numeric(str_replace(',', '.', trim($_POST['preco'])))) {
-        $erros['preco'] = 'O preço deve ser nos formatos 9999, 9999.0 ou 9999,0, até duas casas decimais.';
+    } elseif (!is_numeric(trim($_POST['preco']))) {
+        $erros['preco'] = 'O preço deve ser nos formatos "9999" ou "9999.0", até duas casas decimais.';
     } elseif (trim($_POST['preco']) < 0 || trim($_POST['preco']) > 9999999) {
         $erros['preco'] = 'O preço deve ser um valor (decimal ou não) entre 0 e 9999999.';
     }

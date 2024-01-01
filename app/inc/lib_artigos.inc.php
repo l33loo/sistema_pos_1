@@ -27,7 +27,7 @@ function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, 
     $artigo = [
         'codigo' => $codigo === null ? count($artigos) + 1 : $codigo,
         'nome' => $nome,
-        'preco' => number_format((float)$preco, 2, ',', ' '),
+        'preco' => $preco,
         'iva' => $iva,
     ];
 

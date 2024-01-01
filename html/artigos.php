@@ -127,7 +127,7 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
                                 <tr>
                                     <td><?php echo $artigo['codigo']; ?>
                                     <td><?php echo $artigo['nome']; ?></td>
-                                    <td><?php echo $artigo['preco'] . ' €'; ?></td>
+                                    <td><?php echo number_format((float)$artigo['preco'], 2, ',', ' ') . ' €'; ?></td>
                                     <td><?php echo $artigo['iva']; ?></td>
                                     <td><?php echo $barras;?></td>
                                 </tr>

@@ -76,7 +76,7 @@ function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $qu
         'codigo' => $codigo,
         'nome' => $nome,
         'quantidade' => $quantidade,
-        'precoUni' => number_format((float)$precoUnitario, 2, ',', ' '),
+        'precoUni' => $precoUnitario,
         'iva' => $iva,
         'cliente' => $cliente,
         'desconto' => $desconto,
