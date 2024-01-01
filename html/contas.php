@@ -206,10 +206,10 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
                         <?php foreach ($contas as $nif => $conta) { ?>
                             <tr>
                                 <td><?php echo $conta['codigo']; ?>
-                                <td><?php echo $conta['nomeCliente']; ?></td>
+                                <td><?php echo $conta['nome']; ?></td>
                                 <td><?php echo $nif; ?></td>
                                 <td><?php echo $conta['morada']; ?></td>
-                                <td><?php echo $conta['codigoPostal'];?></td>
+                                <td><?php echo $conta['cp'];?></td>
                                 <td><?php echo $conta['localidade'];?></td>
                                 <td><?php echo $conta['desconto'];?></td>
                             </tr>

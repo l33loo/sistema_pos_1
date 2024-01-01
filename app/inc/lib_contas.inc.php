@@ -15,9 +15,9 @@ function lerContas(): array {
         $conta = explode(";", trim($linha));
         $listaContas[$conta[2]] = array(
             'codigo' => $conta[0],
-            'nomeCliente' => $conta[1],
+            'nome' => $conta[1],
             'morada' => $conta[3],
-            'codigoPostal' => $conta[4],
+            'cp' => $conta[4],
             'localidade' => $conta[5],
             'desconto' => $conta[6],
         );

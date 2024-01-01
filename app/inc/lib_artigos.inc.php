@@ -22,12 +22,12 @@ function lerArtigos(): array
 }
 
 //adicionar um artigo
-function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras): array
+function adicionarArtigo(array $artigos, string $nome, string $preco, int $iva, string $barras, ?int $codigo = null): array
 {
     $artigo = [
-        'codigo' => count($artigos) + 1,
+        'codigo' => $codigo === null ? count($artigos) + 1 : $codigo,
         'nome' => $nome,
-        'preco' => $preco,
+        'preco' => number_format((float)$preco, 2, ',', ' '),
         'iva' => $iva,
     ];
 

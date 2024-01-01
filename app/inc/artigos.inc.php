@@ -43,18 +43,18 @@ if (isset($_POST['submit'])) {
     }
 
     if (count($erros) === 0) {
-        $barras = trim($_POST['barras']) . ean13CheckDigit($_POST['barras']);
+        $barras = trim($_POST['barras']) . ean13CheckDigit(trim($_POST['barras']));
 
         if (array_key_exists($barras, $artigos)) {
-            $erros['barras'] = 'O Código de barras "' . $_POST['barras'] . '" já existe.';
+            $erros['barras'] = 'O Código de barras "' . trim($_POST['barras']) . '" já existe.';
         }
 
-        $artigos = adicionarArtigo($artigos, $_POST['nome'], $_POST['preco'], $iva, $barras);
+        $artigos = adicionarArtigo($artigos, trim($_POST['nome']), trim($_POST['preco']), $iva, $barras);
 
         if (guardarArtigos($artigos)) {
-            $msgSucesso = 'Artigo "' . $_POST['nome'] . '" criado com sucesso';
+            $msgSucesso = 'Artigo "' . trim($_POST['nome']) . '" criado com sucesso';
         } else {
-            $erros['guardar'] = 'Erro a criar a artigo "' . $_POST['nome'];
+            $erros['guardar'] = 'Erro a criar a artigo "' . trim($_POST['nome']);
         }
     }    
 }
@@ -62,7 +62,15 @@ if (isset($_POST['submit'])) {
  //guarda um artigo
 function guardarArtigos(array $artigos): bool
 {
-    $ficheiro = fopen(SERVER_ROOT . '/dados/artigos.txt', 'w') or die('Impossível abrir o ficheiro');
+    $caminhoFicheiro = SERVER_ROOT . '/dados/artigos.txt';
+    if (!file_exists($caminhoFicheiro)) {
+        return false;
+    }
+
+    $ficheiro = fopen($caminhoFicheiro, 'w');
+    if ($ficheiro === false) {
+        return false;
+    }
 
     //escreve cada artigo da lista numa linha separando os 
     //itens desta mesma lista por ";"
