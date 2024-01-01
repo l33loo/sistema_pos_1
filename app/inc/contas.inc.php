@@ -11,6 +11,7 @@ $contas = lerContas();
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validar os campos do formulário
     if (empty(trim($_POST['nome']))) {
         $erros['nomeCliente'] = 'Deve preecher o campo do Nome do cliente.';
     }

@@ -27,6 +27,7 @@ function lerContas(): array
     return $listaContas;
 }
 
+// Um número de contribuente "null" é igual ao Consumidor Final
 function lerConta(?string $contribuente): array
 {
     $contas = lerContas();
@@ -34,7 +35,6 @@ function lerConta(?string $contribuente): array
     if (!$contribuente) {
         $contribuente_consumidor_final = '999999990';
         if (!array_key_exists($contribuente_consumidor_final, $contas)) {
-            // TODO: error
             return [];
         }
 
@@ -45,7 +45,6 @@ function lerConta(?string $contribuente): array
     }
     
     if (!array_key_exists($contribuente, $contas)) {
-        // TODO: error
         return [];
     }
 

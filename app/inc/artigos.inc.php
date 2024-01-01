@@ -3,7 +3,7 @@
 
 require_once 'lib_artigos.inc.php';
 
-// Re-inicializar mensagems de sucesso e erro
+// Re-inicializar mensagens de sucesso e erro
 $msgSucesso = '';
 $erros = [];
 
