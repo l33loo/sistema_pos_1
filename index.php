@@ -80,7 +80,7 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="submit" name="submit" value="Adicionar">
+                    <input type="submit" class="btn btn-primary" name="submit" value="Adicionar">
                 </div>
             </div>
             <?php if (!empty($successMsg) && count($erros) === 0) { ?>
