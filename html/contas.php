@@ -7,7 +7,7 @@ $pageTitle = 'Contas';
 
 // HTML
 echo getHeader($pageTitle);
-include(SERVER_ROOT . '/html/components/body_start.inc.php');
+require_once SERVER_ROOT . '/html/components/body_start.inc.php';
 ?>
 
 <h1 class="py-3"><?php echo $pageTitle ?></h1>
@@ -222,4 +222,4 @@ include(SERVER_ROOT . '/html/components/body_start.inc.php');
     </div>
 </div>
 
-<?php include(SERVER_ROOT . '/html/components/body_end.inc.php'); ?>
+<?php require_once SERVER_ROOT . '/html/components/body_end.inc.php'; ?>
