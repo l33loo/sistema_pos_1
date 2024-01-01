@@ -42,6 +42,8 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
                             class="form-control"
                             id="quantidade"
                             name="quantidade"
+                            min="1"
+                            value="1"
                             required
                         >
                         <?php if (!empty($erros['quantidade'])) { ?>
