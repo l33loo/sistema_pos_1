@@ -25,7 +25,6 @@ if (!empty($_POST)) {
     }
     
     if (count($erros) === 0) {
-        // validate types
         $artigos = lerArtigos();
 
         if (!array_key_exists(trim($_POST['barras']), $artigos)) {
