@@ -42,7 +42,8 @@ if (!empty($_POST)) {
     }
 }
 
-function lerVendas(): array {
+function lerVendas(): array
+{
     $listaVendas = [];
 
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
@@ -70,7 +71,8 @@ function lerVendas(): array {
     return $listaVendas;
 }
 
-function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente, int $desconto = 0): array {
+function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $quantidade, string $precoUnitario, int $iva, int $cliente, int $desconto = 0): array
+{
     $listaVendas[] = array(
         'codigo' => $codigo,
         'nome' => $nome,
@@ -84,7 +86,8 @@ function adicionarVenda(array $listaVendas, int $codigo, string $nome, float $qu
     return $listaVendas;
 }
 
-function guardarVendas(array $listaVendas): bool {
+function guardarVendas(array $listaVendas): bool
+{
     $caminhoFicheiro = SERVER_ROOT . '/dados/venda.txt';
     if (!file_exists($caminhoFicheiro)) {
         return false;
@@ -106,7 +109,8 @@ function guardarVendas(array $listaVendas): bool {
     return true;
 }
 
-function vendasDaConta(?string $contribuente): array {
+function vendasDaConta(?string $contribuente): array
+{
     $conta = lerConta($contribuente);
     $vendas = lerVendas();
     $vendasDaConta = [];

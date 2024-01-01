@@ -70,7 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Função para guardar a conta no arquivo CSV
-function guardarConta(array $conta): bool {
+function guardarConta(array $conta): bool
+{
     $csvFileName = SERVER_ROOT . '/dados/contas.txt';
     if (!file_exists($csvFileName)) {
         return false;

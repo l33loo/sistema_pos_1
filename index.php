@@ -134,7 +134,7 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
             </thead>
             <tbody>
                 <?php $total = 0;
-                if (!empty($_POST['submit'])) {
+                if (!empty($_POST['submit']) && count($erros) === 0) {
                     foreach (vendasDaConta($_POST['contribuente']) as $venda) {
                         $totalArtigo = $venda["quantidade"]*(1+$venda["iva"]/100)*$venda["precoUni"];
                         $total += $totalArtigo; ?>

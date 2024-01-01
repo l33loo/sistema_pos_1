@@ -1,5 +1,6 @@
 <?php
-function getHeader(string $pageSubTitle): string {
+function getHeader(string $pageSubTitle): string
+{
     $html = '<!DOCTYPE html>
 <html lang="en">
 <head>

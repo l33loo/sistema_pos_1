@@ -1,7 +1,8 @@
 <?php
 // Funções utilizadas em varios ficheiros
 
-function lerContas(): array {
+function lerContas(): array
+{
     $listaContas = [];
 
     $caminhoFicheiro = SERVER_ROOT . "/dados/contas.txt";
@@ -26,7 +27,8 @@ function lerContas(): array {
     return $listaContas;
 }
 
-function lerConta(?string $contribuente): array {
+function lerConta(?string $contribuente): array
+{
     $contas = lerContas();
 
     if (!$contribuente) {
