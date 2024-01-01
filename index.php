@@ -162,3 +162,4 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
 </div>
 
 <?php require_once SERVER_ROOT . '/html/components/body_end.inc.php'; ?>
+

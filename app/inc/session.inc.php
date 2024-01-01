@@ -4,3 +4,4 @@
         header('Location: ' . APP_ROOT . '/html/login.php');
         exit;
     }
+    

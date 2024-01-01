@@ -121,3 +121,4 @@ function vendasDaConta(?string $contribuente): array
     }
     return $vendasDaConta;
 }
+

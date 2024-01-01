@@ -60,3 +60,4 @@ function lerUtilizadores(): array
 
     return $listaUtilizadores;
 }
+

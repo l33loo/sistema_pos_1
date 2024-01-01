@@ -14,3 +14,4 @@ function getHeader(string $pageSubTitle): string
 
     return $html;
 }
+

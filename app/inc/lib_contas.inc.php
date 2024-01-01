@@ -53,3 +53,4 @@ function lerConta(?string $contribuente): array
 
     return $conta;
 }
+

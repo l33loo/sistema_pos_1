@@ -101,3 +101,4 @@ function ean13CheckDigit(string $digits): string
     $check_digit = $next_ten - $total_sum;
     return $check_digit;
 }
+
