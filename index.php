@@ -153,7 +153,7 @@ require_once SERVER_ROOT . '/html/components/body_start.inc.php';
                 <span class="fw-bold">Total:</span> <?php echo number_format($total, 2, ',', ' ') . ' €'; ?>
             </div>
             <div>
-                <span class="fw-bold">Total C/ Desconto:</span> <?php echo number_format($total*(1-$conta['desconto']), 2, ',', ' ') . ' €'; ?>
+                <span class="fw-bold">Total C/ Desconto:</span> <?php echo number_format($total*(1-$conta['desconto']/100), 2, ',', ' ') . ' €'; ?>
             </div>
         <?php } ?>
     </div>
