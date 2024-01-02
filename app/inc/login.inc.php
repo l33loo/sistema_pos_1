@@ -5,33 +5,29 @@ session_start();
 if (!empty($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $utilizadores = lerUtilizadores();
-    $utilizadorEValido = validarUtilizador($email, $password, $utilizadores);
+    $utilizadorEValido = validarUtilizadorNoLogin($email, $password);
     
     if ($utilizadorEValido) {
-        $_SESSION['autenticado'] = true;
-        setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
-        header('Location: ' . APP_ROOT  . '/');
+        $passHash = password_hash($password, PASSWORD_BCRYPT);
+        handleAuthenticatedUser($email);
     } else {
         $mensagemErro = 'Utilizador ou palavra-passe incorrectos';
     }
+} elseif (!empty($_SESSION['autenticado']) && $_SESSION['autenticado'] === true) {
+    header('Location: ' . APP_ROOT . '/');
+// Verificar se há um session cookie contendo credenciais de utilizador validos
+} elseif (!empty($_COOKIE['sessioncookie']) && validarSessionCookie($_COOKIE['sessioncookie'])) {
+    $creds = getCredsFromSessionCookie($_COOKIE['sessioncookie']);
+    handleAuthenticatedUser($creds['email']);
 } else {
-    if (!empty($_SESSION['autenticado']) && $_SESSION['autenticado'] === true) {
-        header('Location: ' . APP_ROOT . '/');
-    } else {
-        // TODO: fix Undefined variable $password in /home/lila/Documents/azores/uac/daw/programacao_web_i/projecto1/app/inc/login.inc.php on line 22
-        if (!empty($_COOKIE['sessioncookie']) && $_COOKIE['sessioncookie'] === password_hash($password, PASSWORD_BCRYPT)) {
-            $_SESSION['autenticado'] = true;
-            setcookie('sessioncookie', $email . '@' .  password_hash($password, PASSWORD_BCRYPT), time() + (60 * 60 * 24 * 30));
-            header('Location: '. APP_ROOT . '/');
-        } else {
-            setcookie('sessioncookie', '', time()-1);
-        }
-    }
+    $_SESSION = [];
+    session_destroy();
+    setcookie('sessioncookie', '', time()-3600, '/html');
 }
 
-function validarUtilizador(string $email, $pass, array $utilizadores): bool
+function validarUtilizadorNoLogin(string $email, string $pass): bool
 {
+    $utilizadores = lerUtilizadores();
     if (!array_key_exists($email, $utilizadores)) {
         return false;
     }
@@ -61,3 +57,38 @@ function lerUtilizadores(): array
     return $listaUtilizadores;
 }
 
+function validarSessionCookie(string $cookie): bool
+{
+    $utilizadores = lerUtilizadores();    
+    $creds = getCredsFromSessionCookie($cookie);
+    if (!array_key_exists($creds['email'], $utilizadores)) {
+        return false;
+    }
+    
+    return $utilizadores[$creds['email']] === $creds['passHash'];
+}
+
+function getCredsFromSessionCookie(string $cookie): array
+{
+    $array = explode('@', $cookie, 3);
+    $email = $array[0] . '@' . $array[1];
+    $pass = $array[2];
+
+    return array(
+        'email' => $email,
+        'passHash' => $pass,
+    );
+}
+
+function setSessionCookie(string $email, string $pass): void
+{
+    setcookie('sessioncookie', $email . '@' .  $pass, time() + (60 * 60 * 24 * 30));
+}
+
+function handleAuthenticatedUser(string $email): void
+{
+    $_SESSION['autenticado'] = true;
+    $utilizadores = lerUtilizadores();
+    setSessionCookie($email, $utilizadores[$email]);
+    header('Location: '. APP_ROOT . '/');
+}
