@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Chama a função para guardar o cliente
         if (guardarConta($cliente)) {
+            $contas = lerContas();
             $successMsg = 'Conta do Cliente ' . trim($_POST['nif']) . ' criada com Sucesso';
         } else {
             $erros['guardar'] = 'Erro a criar a conta ' . trim($_POST['nif']);
