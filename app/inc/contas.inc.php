@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!isset($_POST['desconto']) // Certifica-se de que o desconto está definido
         || !is_numeric(trim($_POST['desconto'])) // Certifica-se de que o desconto é um número
-        || trim($_POST['desconto']) <= 0
-        || trim($_POST['desconto']) >= 15 // Verifica se o desconto está no intervalo de 0 a 15
+        || trim($_POST['desconto']) < 0
+        || trim($_POST['desconto']) > 15 // Verifica se o desconto está no intervalo de 0 a 15
     ) { 
         $erros['desconto'] = 'O desconto deve ser entre 0 e 15.';
     }
@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Chama a função para guardar o cliente
         if (guardarConta($cliente)) {
+            $contas = lerContas();
             $successMsg = 'Conta do Cliente ' . trim($_POST['nif']) . ' criada com Sucesso';
         } else {
             $erros['guardar'] = 'Erro a criar a conta ' . trim($_POST['nif']);
