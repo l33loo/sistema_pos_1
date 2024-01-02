@@ -1,9 +1,18 @@
 # SISTEMA DE POS ONLINE
 
 ## Grupo
-Gonçalo Gregório
-Lila Karpowicz
-Miguel Gil
+- Gonçalo Gregório
+- Lila Karpowicz
+- Miguel Gil
+
+## Configuração da Aplicação
+
+- Numa linha de comando, execute este comando:
+`git pull https://github.com/l33loo/sistema_pos_1.git`
+OU
+`git pull git@github.com:l33loo/sistema_pos_1.git`
+- Copie o ficheiro `/config/config_SAMPLE.php` e dá-lhe o nome `config.php`
+- No ficheiro `/config/config.php`, altere a variável APP_ROOT para ser o seu caminho local deste projeto, a partir da raiz do seu servidor.
 
 ## PARTE I – REGISTO DE INFORMAÇÃO
 
