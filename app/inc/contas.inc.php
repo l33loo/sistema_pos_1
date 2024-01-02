@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty(trim($_POST['nif'])) || !preg_match('/^[0-9]{9}$/', trim($_POST['nif']))) {
         $erros['nif'] = 'O NIF dever ter 9 dígitos.';
+    } elseif (array_key_exists(trim($_POST['nif']), $contas)) {
+        $erros['nif'] = 'A conta "' . trim($_POST['nif']) . '" já existe.';
     }
 
     if (empty(trim($_POST['porta']))) {
