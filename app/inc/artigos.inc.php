@@ -40,17 +40,15 @@ if (isset($_POST['submit'])) {
         $erros['barras'] = 'Deve preencher o campo do Código de barras';
     } elseif (!is_numeric(trim($_POST['barras'])) || strlen(trim($_POST['barras'])) !== 12) {
         $erros['barras'] = 'O Código de barras deve ter 12 dígitos.';
-    }
-
-    if (count($erros) === 0) {
+    } else {
         $barras = trim($_POST['barras']) . ean13CheckDigit(trim($_POST['barras']));
-
         if (array_key_exists($barras, $artigos)) {
             $erros['barras'] = 'O Código de barras "' . trim($_POST['barras']) . '" já existe.';
         }
+    }
 
+    if (count($erros) === 0) {
         $artigos = adicionarArtigo($artigos, trim($_POST['nome']), trim($_POST['preco']), $iva, $barras);
-
         if (guardarArtigos($artigos)) {
             $msgSucesso = 'Artigo "' . trim($_POST['nome']) . '" criado com sucesso';
         } else {
